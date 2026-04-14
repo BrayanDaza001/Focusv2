@@ -1,0 +1,38 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+  rel="stylesheet"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+  rel="stylesheet"
+/>
+
+<div
+  class="bg-slate-200/60 font-display fixed inset-0 flex items-center justify-center z-20 opacity-0 pointer-events-none"
+  id="modal-error"
+>
+  <div class="min-h-screen min-w-screen flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-2xl w-full max-w-md p-8 text-center">
+      <div
+        class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100 dark:bg-red-900/30 mb-5"
+      >
+        <span class="material-symbols-outlined text-red-600">close</span>
+      </div>
+      <h3
+        class="text-lg font-bold leading-6 text-slate-900"
+        id="modal-error-h3"
+      >
+      </h3>
+      <div class="mt-2">
+        <p class="text-sm text-slate-600" id="modal-error-p"></p>
+      </div>
+      <div class="mt-6">
+        <button
+          class="w-full inline-flex justify-center rounded border border-transparent bg-slate-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 dark:focus:ring-offset-slate-800 sm:text-sm cursor-pointer"
+          id="btn-modal-error"
+          type="button">ok</button
+        >
+      </div>
+    </div>
+  </div>
+</div>

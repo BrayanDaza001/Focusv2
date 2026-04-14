@@ -1,0 +1,35 @@
+---
+interface Props {
+  tipo?: keyof typeof estilos;
+  textcontent: string;
+  idBC: string;
+  class?: string;
+}
+
+const {
+  idBC,
+  textcontent,
+  tipo = "default",
+  class: className = "",
+} = Astro.props;
+
+const estilos = {
+  default: "bg-[rgb(37,99,235)] active:bg-[rgb(66,133,244)] active:shadow-md",
+  aceptar: "bg-green-500 active:bg-green-700 hover:shadow-md",
+  error: "bg-[rgb(244,63,94)] active:bg-red-700",
+};
+import { Icon } from "astro-icon/components";
+---
+
+<div>
+  <button
+    id={idBC}
+    class={`text-white font-bold rounded-lg py-2 px-4 
+  active:text-white cursor-pointer 
+  transition-all active:scale-90 w-[200px] h-10 flex flex-row items-center justify-start 
+  ${estilos[tipo]} ${className}`}
+  >
+    <span class="w-2/12"> <Icon name="disc" /></span>
+    {textcontent}
+  </button>
+</div>

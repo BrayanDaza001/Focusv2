@@ -1,0 +1,46 @@
+---
+interface Props {
+  dataId: string;
+  placeH?: string;
+  typeIn?: "text" | "number" | "email" | "password";
+  nameIn: string;
+  icon?: boolean;
+  disabled?: boolean;
+  class: string;
+}
+const {
+  dataId,
+  placeH,
+  typeIn = "text",
+  nameIn,
+  icon = false,
+  disabled = false,
+  class: className = "",
+} = Astro.props;
+
+import { Icon } from "astro-icon/components";
+---
+
+<div class="relative w-full">
+  <input
+    type={typeIn}
+    placeholder={placeH}
+    data-id-input={dataId}
+    name={nameIn}
+    id={dataId}
+    disabled={disabled}
+    class={`
+      pl-5 h-10 w-full border rounded-sm border-gray-200 bg-gray-100 
+      focus:bg-blue-100 focus:border-blue-500 focus:outline-none focus:text-cyan-900 
+      ${className}
+    `}
+  />
+
+  {
+    icon && (
+      <span class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+        <Icon name="lock" />
+      </span>
+    )
+  }
+</div>

@@ -1,0 +1,65 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import { Icon } from "astro-icon/components";
+import TituloInicial from "../components/baseModales/tituloInicial.astro";
+import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
+import EditarAccesorio from "../components/modales/editarAccesorio.astro";
+import ToastBase from "../components/baseModales/toastBase.astro";
+---
+
+<Layoutv2 titulo={"Soporte > Consulta y Registro"}>
+  <div class="flex flex-col w-full px-10 gap-y-5">
+    <TituloInicial
+      titulo="Gestion de accesorios"
+      texto="Administra el inventario de periféricos y suministros de la organización"
+    />
+    <div
+      class="flex flex-row gap-y-2.5 justify-between items-center h-full w-full"
+    >
+      <!-- <div class="flex flex-col justify-start gap-y-2.5 h-[80px] w-4/12 ml-6">
+        <label for="tipoMovimiento" class="font-semibold text-gray-700"
+          >TIPO DE MOVIMIENTO / ESTADO</label
+        >
+
+        <select
+          id="tipoMovimiento"
+          class="w-1/2 border border-gray-200 rounded-sm bg-gray-100 h-full"
+        >
+          <option value="">Seleccione...</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+        </select>
+      </div> -->
+
+      <div class="conten_3 h-[50px] flex justify-end w-full">
+        <button
+          id="btn_modal_crear_accesorios"
+          class="group h-full w-2/12 flex items-center justify-center gap-2 font-bold
+  border border-gray-200 rounded-sm cursor-pointer
+  bg-blue-500 hover:bg-blue-800
+  active:scale-95 active:shadow-md
+  transition-all duration-200 z-10"
+        >
+          <Icon name="mas" class="text-white w-6 h-6 group-active:scale-90" />
+          <span class="text-white">NUEVO ACCESORIO</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="tabla-accesorios" class="w-23/24 self-center -mt-15 -ml-15"></div>
+  </div>
+  <AgregarAccesorios
+    cancelar_agregar="cancelar-crear-accesorio"
+    guardar_agregar="guardar-crear-accesorio"
+    id="modal_crear_accesorios"
+    titulo="Crear nuevo accesorio"
+  />
+  <EditarAccesorio
+    cancelar_editar_accesorio="cancelar-edit-accesorio"
+    guardar_editar_accesorio="guardar-edit-accesorio"
+  />
+  <ToastBase id="borrar_accesorio" title="Eliminar Accesorio" />
+</Layoutv2>
+
+<script src="../utils/accesorios/tablaAccesorios.js"></script>
+<script src="../utils/accesorios/scripts_btns.js"></script>

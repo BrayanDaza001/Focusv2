@@ -1,0 +1,10 @@
+---
+const { titulo, id, class: className = "" } = Astro.props;
+---
+
+<h2
+  class={`text-gray-700 font-bold flex mt-2 ml-7 text-2xl ${className}`}
+  id={id}
+>
+  {titulo}
+</h2>

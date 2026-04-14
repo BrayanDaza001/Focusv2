@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon/components";
+const {
+  texto,
+  actividad,
+  formatos,
+  para,
+  file,
+  class: className = "",
+} = Astro.props;
+---
+
+<div class="w-full flex justify-center">
+  <label
+    for={para}
+    class={`w-[500px] h-[200px] border-2 border-dashed border-blue-400
+           rounded-lg flex flex-col items-center justify-center
+           text-center cursor-pointer bg-gray-100 transition ${className}`}
+  >
+    <div
+      class={`w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center `}
+    >
+      <Icon name="upload" class="w-6 h-6 text-blue-600" />
+    </div>
+    <p class="text-gray-700">
+      <span class="text-gray-700 font-semibold"
+        >{texto}
+        <span class="text-red-500 font-semibold">{actividad}</span></span
+      >
+    </p>
+
+    <p class="text-sm text-gray-400 mb-3">{formatos}</p>
+
+    <span
+      class="bg-gray-200 px-4 py-2 rounded-md text-gray-700 font-semibold text-sm hover:bg-blue-500 hover:text-white active:scale-95 transition-all duration-300"
+    >
+      EXPLORAR ARCHIVOS
+    </span>
+
+    <input id={para} type={file} class="hidden" accept=".pdf,.jpg,.png" />
+  </label>
+</div>

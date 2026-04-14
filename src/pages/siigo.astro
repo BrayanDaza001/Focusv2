@@ -1,0 +1,26 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import TituloInicial from "../components/baseModales/tituloInicial.astro";
+import ActivarDesactivar from "../components/modales/ActivarDesactivar.astro";
+import EditarProyecto from "../components/modales/EditarProyecto.astro";
+---
+
+<Layoutv2 titulo="Facturacion > Siigo">
+  <div class="flex flex-col w-full px-10 gap-y-5 mb-5">
+    <TituloInicial
+      titulo="Nomenclatura de nombres Siigo"
+      texto="Asocie los nombres de los reportes"
+    />
+    <div id="tabla-nomenclatura" class="w-23/24 self-center mt-3 .tablas"></div>
+  </div>
+  <div class="flex items-center justify-end w-[95%]
+  mt-2"></div>
+  <div>
+    <input type="text" slot="field" />
+  </div>
+  <ActivarDesactivar id_modal={"toogle_accion"} />
+  <EditarProyecto />
+</Layoutv2>
+
+<script src="../utils/siigo/tabla_nomenclatura.js"></script>
+<script src="../utils/siigo/scripts_btns.js"></script>

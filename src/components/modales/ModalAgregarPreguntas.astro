@@ -1,0 +1,22 @@
+---
+import Basemodal from "../baseModales/basemodal.astro";
+import { Icon } from "astro-icon/components";
+import LabelBase from "../baseModales/labelBase.astro";
+import TituloBase from "../titulos/tituloBase.astro";
+---
+
+<Basemodal id="Formulario_editar">
+  <div slot="titulo" class="px-10 flex justify-start items-center">
+    <Icon name="reporte" class="text-blue-500 w-7 h-7" />
+    <TituloBase titulo=" Editar formulario" />
+  </div>
+  <div class="px-10 flex justify-start items-center gap-x-2" slot="body">
+    <LabelBase for="pregunta" textL="Pregunta" slot="body" />
+  </div>
+  <button
+    id="agregar_pregunta"
+    slot="botones"
+    class="text-sm text-white bg-blue-500 cursor-pointer p-2 active:scale-95 rounded-md transition-all duration-300"
+    >Agregar Pregunta</button
+  >
+</Basemodal>

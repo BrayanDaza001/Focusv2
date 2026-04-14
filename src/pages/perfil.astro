@@ -1,0 +1,120 @@
+---
+import TituloBase from "../components/titulos/tituloBase.astro";
+import TituloInicial from "../components/baseModales/tituloInicial.astro";
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import LabelBase from "../components/baseModales/labelBase.astro";
+import Baseinput from "../components/baseModales/baseinput.astro";
+import { Icon } from "astro-icon/components";
+import Cancelar from "../components/botones/cancelar.astro";
+import BotonGuardar from "../components/botones/BotonGuardar.astro";
+---
+
+<Layoutv2 titulo="Coordinador >  Paz y Salvo">
+  <div class="flex flex-col w-full px-10 md:mb-15 lg:mb-5">
+    <TituloInicial
+      titulo="Perfil de usuario"
+      texto="Gestiona tu información personal y configura tu firma autógrafa para documentos digitales."
+      class="-ml-7"
+    />
+  </div>
+
+  <div class="flex flex-row w-full px-10 gap-y-5 gap-x-4">
+    <div class="flex w-3/12 flex-col">
+      <div class="flex w-full flex-col bg-white rounded-md gap-y-5 p-2">
+        <div class="w-full flex gap-x-2">
+          <Icon name="usuariosConfig" class="text-blue-500" />
+          <h2 class="font-semibold">Datos personales</h2>
+        </div>
+        <div class="w-full">
+          <LabelBase forLabel="datos_personales" textL="Nombre completo" />
+          <Baseinput placeH="Administrador sistema" />
+        </div>
+
+        <div class="flex w-full flex-col">
+          <LabelBase forLabel="datos_correo" textL="Correo Electronico" />
+          <Baseinput placeH="admin@ocaglobal.com" />
+        </div>
+        <div class="flex w-full flex-col">
+          <LabelBase forLabel="datos_rol" textL="Rol" />
+          <Baseinput placeH="Super Administrador" />
+          <p class="text-zinc-400 font-light text-xs">
+            El rol solo puede ser modificado por TI.
+          </p>
+        </div>
+      </div>
+      <div class="lg:w-12/12 md:w-12/12 mt-2" id="nota">
+        <div class="flex items-center space-x-3">
+          <Icon name="mdi:alert-circle" class="text-blue-500 rotate-180" />
+          <h3 class="text-blue-500 font-semibold">Importante</h3>
+        </div>
+        <p class="text-blue-500 font-light">
+          Su firma digital será utilizada automáticamente en todos los reportes
+          de facturación generados bajo su usuario.
+        </p>
+      </div>
+    </div>
+    <div class="w-9/12 flex flex-col items-center">
+      <div class="w-full flex flex-col items-center bg-white rounded-2xl pt-2">
+        <div class="w-23/24 flex justify-between">
+          <div class="flex items-center ml-3 gap-x-2">
+            <Icon name="lapiz_firma" class="text-blue-400" />
+            <h2 class="text-2xl">Firma Digital</h2>
+          </div>
+          <div class="flex items-center">
+            <Icon name="lapiz_firma" class="text-blue-400" />
+            <label
+              for="input_firma"
+              class="text-blue-500 underline cursor-pointer"
+            >
+              Subir img aquí
+            </label>
+            <input
+              type="file"
+              id="input_firma"
+              accept="image/*"
+              class="hidden"
+            />
+          </div>
+        </div>
+        <div
+          class="w-full flex flex-col items-center justify-center p-4 space-y-2"
+        >
+          <div
+            class="w-23/24 bg-gray-300 h-60 flex items-center justify-center"
+          >
+            <canvas
+              id="firmaCanvas"
+              class="bg-white w-23/24 h-22/24 border border-gray-300 rounded-md"
+            ></canvas>
+          </div>
+          <div class="w-23/24 h-30 flex justify-start flex-col">
+            <p class="font-semibold text-sm">Vista previa Actual</p>
+            <div
+              class="bg-gray-400/20 rounded-md w-1/2 h-full flex items-center justify-center overflow-hidden"
+            >
+              <img src="" alt="" id="img_firma" />
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-row justify-start ml-7 mb-5 gap-3.5">
+          <Cancelar textcontent="Limpiar firma" idB="limpiar_firma" />
+          <BotonGuardar idBC="guardar_firma" textcontent="Guardar cambios" />
+        </div>
+      </div>
+      <div
+        class="w-full flex flex-row items-center justify-start mt-5 bg-white/50 p-3 rounded-lg"
+      >
+        <Icon name="lock" class="text-green-500 h-7 w-7" />
+        <div class="">
+          <h4 class="font-semibold">Seguridad de la firma</h4>
+          <p class="text-zinc-400 font-light text-xs">
+            Su firma está encriptada y solo se utiliza para validación de
+            documentos internos. No se comparte con terceros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layoutv2>
+<script src="../utils/perfil/firma.js"></script>

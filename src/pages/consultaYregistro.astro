@@ -1,0 +1,38 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import TituloInicial from "../components/baseModales/tituloInicial.astro";
+import Botonconfirmar from "../components/botones/botonconfirmar.astro";
+import CargarActas from "../components/modales/cargarActas.astro";
+import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
+---
+
+<Layoutv2 titulo="Soporte > Consulta y Registro">
+  <div class="flex flex-col w-full px-10 gap-y-5">
+    <TituloInicial
+      titulo="Consulta y Registro"
+      texto="Gestion de historial de actas."
+    />
+    <div class="flex flex-col items-end w-full -mb-10">
+      <Botonconfirmar idBC="cargue_acta" textcontent="Cargar acta" />
+    </div>
+
+    <div id="tabla-consulta" class="w-23/24 self-center mt-5 .tablas"></div>
+  </div>
+  <div class="flex items-center justify-end w-[95%]
+  mt-2"></div>
+  <CargarActas
+    cancelar_btn="btn_cancelar_cargue_acta"
+    cargar_btn="btn_cargar_cargue_acta"
+    id="base_modal_consulta"
+  />
+  <!-- <AgregarAccesorios
+    titulo="Ver accesorio"
+    cancelar_agregar="cancelar_accesorio_editar"
+    guardar_agregar="guardar_accesorio_editar"
+    id="modal_editar_accesorio"
+    disabled={false}
+  /> -->
+</Layoutv2>
+
+<script src="../utils/consulta/consulta.js"></script>
+<script src="../utils/consulta/scripts_btns.js"></script>

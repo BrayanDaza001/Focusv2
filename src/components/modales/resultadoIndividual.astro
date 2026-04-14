@@ -1,0 +1,33 @@
+---
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+import { Icon } from "astro-icon/components";
+import TituloBase from "../titulos/tituloBase.astro";
+const { nombre, documento } = Astro.props;
+---
+
+<div class="flex flex-row bg-white w-full h-40 p-2 rounded-lg">
+  <div class="w-1/12 flex items-center justify-start pl-8">
+    <div
+      class="bg-blue-400/20 rounded-full w-20 h-20 flex justify-center items-center"
+    >
+      <Icon name="account_circle" class="text-blue-700 w-10 h-10" />
+    </div>
+  </div>
+  <div class="w-4/12 flex flex-col justify-center items-start h-full">
+    <TituloBase titulo={nombre} />
+    <div class="flex ml-7 items-center gap-1">
+      <Icon name="huella" />
+      <p class="text-zinc-300 font-semibold">{documento}</p>
+    </div>
+  </div>
+  <div class="w-7/12 h-full relative flex justify-center items-center">
+    <div class="flex items-center justify-center relative w-full mr-2 h-full">
+      <!-- <Icon name="folder" class="absolute text-white w-8 h-8 left-6" /> -->
+      <Botonconfirmar
+        idBC="descargue_pdf"
+        textcontent="DESCARGUE PAZ Y SALVO INDIVIDUAL (PDF)"
+        class="w-[800px] h-[60px] text-lg font-semibold"
+      />
+    </div>
+  </div>
+</div>

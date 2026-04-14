@@ -1,0 +1,9 @@
+---
+const { contenido, class: className = "" } = Astro.props;
+---
+
+<p
+  class={`text-gray-500 font-semibold flex w-full h-full justify-center items-center ${className}`}
+>
+  {contenido}
+</p>

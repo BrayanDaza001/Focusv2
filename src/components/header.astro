@@ -1,0 +1,45 @@
+---
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+
+const { titulo } = Astro.props;
+---
+
+<header
+  class="text-white sshadow-[0px_4px_5px_3px_rgba(0,0,0,0.2)] mb-2 w-full"
+>
+  <div class="py-4 flex justify-between items-center pr-10">
+    <div
+      class="flex items-center bg-white rounded-2xl text-center sm:ml-7 right-0"
+    >
+      <button
+        class="flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 transition-colors cursor-pointer"
+        id="btn-exit"
+      >
+        <span class="material-icons-outlined text-xl text-slate-900 font-bold"
+          >{titulo}</span
+        >
+      </button>
+    </div>
+    <div
+      class="flex group items-center bg-slate-900 t rounded-2xl text-center sm:ml-7 right-0 group cursor-pointer active:scale-95 active:bg-white transition-all duration-200 border border-slate-900"
+    >
+      <button
+        class="flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 cursor-pointer transition-all duration-200 hover:bg-white"
+        id="btn-exit"
+      >
+        <span>
+          <Icon
+            name="close"
+            class="w-6 h-6 ext-white group-active:text-slate-900"
+          />
+        </span>
+        <span
+          class="material-icons-outlined text-xl group-active:text-slate-900"
+          >Salir</span
+        >
+      </button>
+    </div>
+  </div>
+</header>
+<script src="../utils/logout/exit.js"></script>

@@ -1,0 +1,11 @@
+---
+import CuerpoBase from "../baseModales/cuerpo_base.astro";
+interface Props {
+  id: string;
+}
+const { id } = Astro.props;
+---
+
+<CuerpoBase id={id}>
+  <div></div>
+</CuerpoBase>

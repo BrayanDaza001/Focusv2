@@ -1,0 +1,77 @@
+---
+import Basemodal from "../baseModales/basemodal.astro";
+import { Icon } from "astro-icon/components";
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+import Cancelar from "../botones/cancelar.astro";
+
+const { accion, proyecto } = Astro.props;
+
+const titulo =
+  accion === "Activar" ? "¿Activar proyecto?" : "¿Desactivar proyecto?";
+
+const icono =
+  accion === "Activar"
+    ? "mdi:check-circle-outline"
+    : "mdi:alert-circle-outline";
+
+const color = accion === "Activar" ? "text-green-500" : "text-red-500";
+
+const bg = accion === "Activar" ? "bg-green-500/20" : "bg-red-500/20";
+
+const texto =
+  accion === "Activar"
+    ? `¿Estás seguro de que deseas activar el proyecto ${proyecto}?`
+    : `¿Estás seguro de que deseas desactivar el proyecto ${proyecto}?`;
+
+const advertencia =
+  accion === "Activar"
+    ? "Esta acción habilitará nuevamente las sincronizaciones."
+    : "Esta acción impedirá nuevas sincronizaciones.";
+
+const boton = accion === "Activar" ? "aceptar" : "error";
+---
+
+<Basemodal
+  class="md:h-[31%] md:w-[60%] lg:h-[28%] lg:w-[28%]"
+  id="toogle_accion"
+>
+  <!-- 🔹 TITULO -->
+  <div class="flex items-center mt-6 ml-7 gap-3" slot="titulo">
+    <div
+      id="modal-icono-bg"
+      class={`${bg} w-12 h-12 flex justify-center items-center rounded-full`}
+    >
+      <div
+        id="modal-icono"
+        class="rounded-full w-full h-full flex items-center justify-center"
+      >
+      </div>
+    </div>
+
+    <h2 id="modal-titulo" class="font-semibold text-lg">{titulo}</h2>
+  </div>
+
+  <!-- 🔹 BODY -->
+  <div class="mt-6 ml-7" slot="body">
+    <p id="modal-texto" class="text-zinc-500">{texto}</p>
+  </div>
+
+  <!-- 🔹 ADVERTENCIA -->
+  <div slot="body" class="ml-7 mt-2 flex items-center gap-x-2">
+    <Icon
+      id="modal-icono-alerta"
+      name="mdi:alert-circle"
+      class="text-zinc-400"
+    />
+    <p id="modal-advertencia" class="text-zinc-400">{advertencia}</p>
+  </div>
+  <!-- 🔹 BOTONES -->
+  <div class="flex gap-x-2 justify-evenly w-full -mt-7" slot="botones">
+    <Cancelar idB="btn_cancelar_modal" textcontent="Cancelar" />
+    <Botonconfirmar
+      idBC="confirmar_btn_modal"
+      textcontent={accion}
+      tipo={boton}
+    />
+  </div>
+</Basemodal>

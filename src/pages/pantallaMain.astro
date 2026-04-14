@@ -1,0 +1,95 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import Actualizar from "../components/actualizar.astro";
+---
+
+<Layoutv2 titulo="Facturacion > Reporte Facturación">
+  <div id="main-container">
+    <main class="container mx-auto px-6 py-12">
+      <div
+        class="bg-white rounded-lg shadow-lg p-6 sm:p-8 border border-slate-200"
+      >
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between mb-8"
+        >
+          <h1 class="text-3xl font-bold text-slate-800">Filtro Reporte</h1>
+          <p class="mt-2 md:mt-0 text-slate-600">
+            Selecciones los criterios de busqueda
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div>
+            <label
+              class="block text-sm font-medium text-slate-600 mb-2"
+              for="year-filter">Año</label
+            >
+            <select
+              class="w-full rounded-md border border-slate-300 bg-background-light text-slate-900 text-base py-3 px-4"
+              id="year-filter"
+            >
+            </select>
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-slate-600 mb-2"
+              for="month-filter">Mes</label
+            >
+            <select
+              class="w-full rounded-md border-slate-300 bg-background-light text-slate-900 text-base py-3 px-4 cursor-pointer border"
+              id="month-filter"
+            >
+            </select>
+          </div>
+
+          <div>
+            <label
+              class="block text-sm font-medium text-slate-600 mb-2"
+              for="project-filter">Proyecto</label
+            >
+            <select
+              class="w-full rounded-md border border-slate-300 bg-background-light text-slate-900 text-base py-3 px-4"
+              id="project-filter"
+            >
+            </select>
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-slate-600 mb-2"
+              for="year-filter">Tipo de archivo</label
+            >
+            <select
+              class="w-full rounded-md border border-slate-300 bg-background-light text-slate-900 text-base py-3 px-4"
+              id="archive-filter"
+            >
+              <option id="select-archive-filter-option" selected disabled
+                >Seleccione un archivo</option
+              >
+              <option id="select-archive-filter-option-Excel">Excel</option>
+              <option id="select-archive-filter-option-PDF">PDF</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <p
+            class="text-red-500 opacity-0 transform translate-x-2 transition-all duration-500 delay-300"
+            id="msg-error"
+          >
+          </p>
+
+          <button
+            id="btn-download"
+            class="flex items-center gap-2 px-6 py-3 rounded-md bg-slate-700 hover:bg-slate-600 cursor-pointer text-white font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2"
+          >
+            <span class="material-icons-outlined text-xl">Buscar</span>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+  <Actualizar />
+</Layoutv2>
+
+<script src="../utils/reportes/filtros.js"></script>
+<script src="../utils/reportes/reporte.js"></script>
+<script src="../utils/reportes/proyectos.js"></script>
+<!-- <script src="../components/actualizar.astro"></script> -->

@@ -1,0 +1,51 @@
+---
+import Aside from "../components/aside.astro";
+import "../styles/global.css";
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import ConfirmarActa from "../components/Actas/confirmarActa.astro";
+import ActaRobo from "../components/Actas/actaRobo.astro";
+import RegistroElementos from "../components/Actas/RegistroElementos.astro";
+import CuerpoBase from "../components/baseModales/cuerpo_base.astro";
+import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
+import ToastBase from "../components/baseModales/toastBase.astro";
+import EditarAccesorio from "../components/modales/editarAccesorio.astro";
+import ValidacionFinal from "../components/baseModales/validacionFinal.astro";
+import Basemodal from "../components/baseModales/basemodal.astro";
+import CargarActas from "../components/modales/cargarActas.astro";
+import ResultadoIndividual from "../components/modales/resultadoIndividual.astro";
+import BotonGuardar from "../components/botones/BotonGuardar.astro";
+import EditarProyecto from "../components/modales/EditarProyecto.astro";
+import ActivarDesactivar from "../components/modales/ActivarDesactivar.astro";
+import EditFormulario from "../components/modales/EditFormulario.astro";
+import Formulario from "./config/enlaces/formulario.astro";
+import SinDatos from "../components/modales/SinDatos.astro";
+import ModalActa from "../components/Actas/ModalActa.astro";
+// Simulación de importación de datos desde types.ts
+import type { ElementoActa } from "../types/ElementoActa";
+
+// Supón que esto viene de un fetch, store o types.ts
+const elementos: ElementoActa[] = [
+  {
+    nombre: "Laptop Dell XPS 15",
+    valor: "$50000  ",
+    icono: "alertas",
+  },
+];
+---
+
+<Layoutv2 titulo="pruebas">
+  {/* Ejemplo seguro: solo renderiza el modal si hay elementos */}
+  {
+    elementos && elementos?.length > 0 && (
+      <ModalActa
+        idModal="modal_acta_prueba"
+        titulo="Acta de Prueba"
+        icono="documentCheck"
+        mostrarCargue={false}
+        idCancelar="cancelar_prueba"
+        idConfirmar="confirmar_prueba"
+        elementos={elementos}
+      />
+    )
+  }
+</Layoutv2>

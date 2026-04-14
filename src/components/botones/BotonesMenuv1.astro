@@ -1,0 +1,19 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { descripcion, srcImg } = Astro.props;
+interface Props {
+  descripcion: string;
+  srcImg: string;
+}
+---
+
+<div class="flex items-center gap-2 cursor-pointer ml-2 group">
+  <Icon
+    name={srcImg}
+    class="w-6 h-6 text-zinc-600 transition duration-300 group-hover:text-blue-500"
+  />
+  <a href="/config/" class="group-hover:text-blue-400 font-semibold text-md"
+    >{descripcion}</a
+  >
+</div>

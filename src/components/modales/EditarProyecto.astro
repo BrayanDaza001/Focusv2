@@ -1,0 +1,64 @@
+---
+import TitulosBase from "../titulos/tituloBase.astro";
+import TituloInicial from "../baseModales/tituloInicial.astro";
+import BotonGuardar from "../botones/BotonGuardar.astro";
+import Basemodal from "../baseModales/basemodal.astro";
+import TituloBase from "../titulos/tituloBase.astro";
+import Baseinput from "../baseModales/baseinput.astro";
+import LabelBase from "../baseModales/labelBase.astro";
+import Cancelar from "../botones/cancelar.astro";
+import DivBotones from "../baseModales/divBotones.astro";
+---
+
+<Basemodal id="modal_editar_proyecto">
+  <TituloBase titulo="Editar proyecto" slot="titulo" />
+  <p slot="titulo" class="text-zinc-400 font-light ml-7 mt-2">
+    Configure la relación entre el proyecto GLPI y SIIGO
+  </p>
+  <div
+    slot="body"
+    class="w-full flex-row justify-between items-center px-3 py-2"
+  >
+    <div class="w-11/12 space-y-2.5 flex flex-col ml-5">
+      <LabelBase forLabel="nombre_glpi" textL=" Nombre_GLPI" />
+      <Baseinput
+        name="nombre_glpi"
+        placeH="nombre_activo"
+        class="ml-3"
+        icon={true}
+        disabled
+      />
+      <p class="text-zinc-500 font-extralight">
+        Este valor proviene del sistema GLPI y no es editable.
+      </p>
+    </div>
+  </div>
+  <div
+    slot="body"
+    class="w-full flex-row justify-between items-center px-3 py-2"
+  >
+    <div class="w-11/12 space-y-2.5 flex flex-col ml-5">
+      <LabelBase forLabel="nombre_siigo" textL=" Nombre_SIIGO" />
+      <Baseinput name="nombre_siigo" placeH="nombre_activo" class="ml-3" />
+    </div>
+  </div>
+  <div
+    slot="body"
+    class="w-full flex-row justify-between items-center px-3 py-2"
+  >
+    <div class="w-11/12 space-y-2.5 flex flex-col ml-5">
+      <LabelBase forLabel="Codigo_proyecto" textL=" Codigo_proyecto" />
+      <Baseinput name="Codigo_proyecto" placeH="codigo_proyecto" class="ml-3" />
+    </div>
+  </div>
+  <div slot="botones">
+    <DivBotones>
+      <Cancelar idB="cancelar_edit_proyecto" textcontent="Cancelar" />
+      <BotonGuardar
+        idBC="guardar_edit_proyecto"
+        textcontent="Guardar cambios "
+        class="w-[210px]"
+      />
+    </DivBotones>
+  </div>
+</Basemodal>

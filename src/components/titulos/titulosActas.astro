@@ -1,0 +1,9 @@
+---
+import { Icon } from "astro-icon/components";
+const { titulo, icono } = Astro.props;
+---
+
+<span class="bg-[rgb(37,99,235,0.3)] rounded-full p-2 ml-4 mt-2">
+  <Icon name={icono} class="w-6 h-6 text-[rgb(37,99,235)]" />
+</span>
+<h2 class="text-gray-700 font-bold flex mt-2">{titulo}</h2>

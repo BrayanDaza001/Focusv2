@@ -1,0 +1,24 @@
+---
+const { dataSelect = [], nameSelect } = Astro.props;
+---
+
+<!-- ---
+const { dataSelect = [], nameSelect } = Astro.props;
+---
+
+<select
+  id={dataSelect}
+  name={nameSelect}
+  data-id-select={dataSelect}
+  class="h-10 w-full border rounded-sm border-gray-200 bg-gray-100 px-3 outline-none focus:border-blue-500"
+>
+  <slot />
+</select> -->
+<select
+  name={nameSelect}
+  class="h-10 w-full border rounded-sm border-gray-200 bg-gray-100 px-3 outline-none focus:border-blue-500"
+>
+  <option disabled selected>Seleccione tipo...</option>
+
+  {dataSelect.map((opcion: []) => <option value={opcion}>{opcion}</option>)}
+</select>

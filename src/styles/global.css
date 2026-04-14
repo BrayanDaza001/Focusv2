@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+.gridjs-tbody .gridjs-tr .gridjs-td:nth-child(3) {
+  
+  
+  color: blue;
+  text-align: center;
+  text-decoration-color: aquamarine;
+}
+
+@layer utilities {
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@keyframes barra {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+.animate-barra {
+  animation: barra 1.2s linear infinite;
+}
+
+
+.gridjs-head{
+width: 100%;
+}
+.gridjs-search{
+  width: 100%;
+   position: relative;
+}
+#tabla-consulta .gridjs-input{
+  padding-left: 28px; /* espacio para el icono */
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+  width: 100%; 
+  
+}
+#tabla-paz .gridjs-input{
+  padding-left: 28px; /* espacio para el icono */
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+  width: 100%; 
+  
+}
+#tabla-edit-formulario .gridjs-td:nth-child(4){
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.gridjs-input:focus{
+  background:rgba(59,130,246,0.1);
+  padding-left: 28px; /* espacio para el icono */
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+  width: 100%; 
+}
+.gridjs-search{
+  display: flex;
+  flex-direction: column;
+  ;
+  gap:12px;
+}
+.titulo-tabla{
+  font-size: 18px;
+  font-weight: 600;
+ 
+}
+

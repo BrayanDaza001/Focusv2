@@ -1,0 +1,31 @@
+---
+interface Props {
+  className?: string;
+  id: string;
+}
+
+const { className = "justify-center", id } = Astro.props;
+---
+
+<div
+  class="flex items-center h-full justify-center bg-gray-300/50 w-full opacity-0 pointer-events-none transition duration-300 scale-95 z-50 fixed inset-0"
+  id={id}
+>
+  <div
+    class={`space-y-4 bg-white w-120 h-120 p-2 flex flex-col justify-center rounded-2xl ${className}`}
+  >
+    <div class="flex gap-x-3 justify-start items-center">
+      <slot name="titulo" />
+    </div>
+    <form class="bg-white h-auto border-t-[0.2px] border-zinc-200 w-full">
+      <div
+        class="w-full flex flex-col gap-2 py-2 px-4 justify-between rounded-md"
+      >
+        <slot name="fields" />
+      </div>
+      <div class="flex flex-col justify-between p-1 mt-3">
+        <slot name="botones" />
+      </div>
+    </form>
+  </div>
+</div>

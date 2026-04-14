@@ -1,0 +1,13 @@
+---
+const { dataId, placeHta, nameIn, class: className = "" } = Astro.props;
+---
+
+<textarea
+  placeholder={placeHta}
+  data-id-textArea={dataId}
+  name={nameIn}
+  id={dataId}
+  class={`pl-5 py-3
+ w-full border rounded-sm border-gray-200 bg-gray-100 focus:bg-blue-100 focus:border-blue-500 focus:outline-none focus:text-cyan-900 ${className || "h-28"}`}
+>
+</textarea>

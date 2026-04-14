@@ -1,0 +1,26 @@
+---
+import Layoutv2 from "../../../layouts/Layoutv2.astro";
+import BotonGuardar from "../../../components/botones/BotonGuardar.astro";
+import EditFormulario from "../../../components/modales/EditFormulario.astro";
+---
+
+<Layoutv2 titulo="Editar Formulario">
+  <div class="w-full h-full flex flex-col items-center justify-start">
+    <div class="w-11/12">
+      <div class="flex items-center h-20 justify-center">
+        <div class="conten_1 duration-300 h-[50px] w-full">
+          <h2 class="font-bold text-2xl">Preferencias del Formulario</h2>
+          <h6 class="text-gray-700 mb-5">Edite su formulario</h6>
+        </div>
+        <BotonGuardar
+          textcontent="Agregar pregunta"
+          idBC="boton-edit-formulario"
+        />
+      </div>
+      <div id="tabla-edit-formulario" class="w-23/24 self-center mt-3 .tablas">
+      </div>
+    </div>
+  </div>
+  <EditFormulario />
+</Layoutv2>
+<script src="../../../utils/config/tabla_formulario.js"></script>

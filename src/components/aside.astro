@@ -1,0 +1,217 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<aside
+  class="text-white shadow-md bg-slate-800 w-60 md:w-64 lg:w-72 h-screen flex flex-col nav_menu"
+>
+  <div
+    class="container mx-auto flex items-center border-b border-b-gray-500 h-[150px]"
+  >
+    <span class="material-icons-outlined text-3xl p-5">
+      <Icon name="widgets" class="w-12 h-16 text-white" />
+    </span>
+    <span class="text-[20px] text-center">Reporte Facturacion Focus</span>
+  </div>
+
+  <div class="relative ml-5">
+    <div
+      class="container mx-auto flex items-center mt-5 transition-colors transition-transform transition-all duration-300 hover:text-orange-200 hover:scale-110 hover:cursor-pointer -ml-5 opacity-0 pointer-events-none absolute"
+      id="btn-atras"
+    >
+      <span class="material-icons-outlined text-3xl ml-3">
+        <Icon name="arrow-left" class="w-8 h-8 text-white" />
+      </span>
+      <span>Atras</span>
+    </div>
+    <nav
+      class="flex-row justify-between space-y-6 border-b-1 border-gray-500 pb-6 pt-6 w-full transition-all duration-300"
+      id="menu_start"
+    >
+      <h2 class="ml-7 text-gray-400">Inicio</h2>
+      <div
+        class="flex items-center gap-2 ml-6 transition-colors transition-transform duration-300 hover:text-orange-200 hover:scale-110 hover:cursor-pointer mt-5"
+        id="facturacion"
+      >
+        <Icon name={"Facturacion"} class="w-8 h-8 text-white" />
+
+        <a class="">Facturacion</a>
+      </div>
+      <div
+        class="flex items-center gap-2 ml-6 transition-colors transition-transform duration-300 hover:text-orange-200 hover:scale-110 hover:cursor-pointer"
+        id="soporte"
+      >
+        <Icon name={"soporte"} class="w-8 h-8 text-white" />
+        <a class="">Soporte</a>
+      </div>
+
+      <div
+        class="flex items-center gap-2 cursor-pointer ml-6 transition-colors transition-transform duration-300 hover:text-orange-200 hover:scale-110"
+        id="btn_cordinador"
+      >
+        <Icon
+          name={"coordinador"}
+          class="w-8 h-8 text-white hover:text-orange-200"
+        />
+        <a class="">Coordinador IT</a>
+      </div>
+    </nav>
+    <nav
+      class="flex-row justify-between space-y-6 border-b-1 border-gray-500 pb-6 pt-6 opacity-0 pointer-events-none absolute w-full -translate-y-5 transition-all duration-300"
+      id="menuFacturacion"
+    >
+      <h2 class="ml-5 text-gray-400">Facturacion</h2>
+      <div class="flex items-center gap-2 ml-6">
+        <Icon name={"reporte"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/pantallaMain"
+          >Reportes</a
+        >
+      </div>
+      <div class="flex items-center gap-2 ml-6">
+        <Icon name={"dash"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/dashGlpi"
+          >Dashboard</a
+        >
+      </div>
+      <div class="flex items-center gap-2 ml-6">
+        <Icon name={"alertas"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/alert"
+          >Alertas</a
+        >
+      </div>
+      <div class="flex items-center gap-2 ml-6">
+        <Icon name={"siigo"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/siigo"
+          >Siigo</a
+        >
+      </div>
+    </nav>
+    <nav
+      class="flex-row justify-between space-y-6 border-b-1 border-gray-500 pb-6 pt-6 opacity-0 pointer-events-none absolute w-full -translate-y-5 transition-all duration-300"
+      id="menuSoporte"
+    >
+      <h2 class="ml-5 text-gray-400">Soporte</h2>
+      <div
+        class="flex items-center gap-2 ml-6 hover:cursor-pointer transition-colors
+    transition-transform
+    duration-300
+    hover:text-orange-200
+    hover:scale-110"
+      >
+        <Icon name={"movimientos"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/movimientos"
+          >Movimientos</a
+        >
+      </div>
+      <div
+        class="flex items-center gap-2 ml-6 hover:cursor-pointer transition-colors
+    transition-transform
+    duration-300
+    hover:text-orange-200
+    hover:scale-110"
+      >
+        <Icon name={"consulta"} class="w-8 h-8 text-white" />
+        <a
+          class="hover:text-orange-200 transition-colors"
+          href="/consultaYregistro">Consulta y Registro</a
+        >
+      </div>
+      <div
+        class="flex items-center gap-2 ml-6 hover:cursor-pointer transition-colors
+    transition-transform
+    duration-300
+    hover:text-orange-200
+    hover:scale-110"
+      >
+        <Icon name={"acesories"} class="w-8 h-8 text-white" />
+        <a
+          class="hover:text-orange-200 transition-colors"
+          href="/gestionDeAccesorios">Accesorios</a
+        >
+      </div>
+    </nav>
+    <nav
+      class="flex-row justify-between space-y-6 border-b-1 border-gray-500 pb-6 pt-6 opacity-0 pointer-events-none absolute w-full -translate-y-5 transition-all duration-300"
+      id="menuCoordinador"
+    >
+      <h2 class="ml-5 text-gray-400">Cordinador IT</h2>
+      <div
+        class="flex items-center gap-2 ml-6 hover:cursor-pointer transition-colors
+    transition-transform
+    duration-300
+    hover:text-orange-200
+    hover:scale-110"
+      >
+        <Icon name={"paz"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors" href="/pazysalvo"
+          >Paz Y salvo</a
+        >
+      </div>
+      <div
+        class="flex items-center gap-2 ml-6 hover:cursor-pointer transition-colors
+    transition-transform
+    duration-300
+    hover:text-orange-200
+    hover:scale-110"
+      >
+        <Icon name={"reportes"} class="w-8 h-8 text-white" />
+        <a class="hover:text-orange-200 transition-colors">Reportes</a>
+      </div>
+    </nav>
+    <div>
+      <h2 class="ml-7 text-gray-400">Administracion</h2>
+
+      <nav class="flex-row justify-between space-y-6 pb-6 pt-6 relative ml-5">
+        <div
+          class="flex items-center gap-2 cursor-pointer ml-2 transition duration-300 hover:text-orange-200 hover:scale-110"
+        >
+          <Icon
+            name={"configuration"}
+            class="w-6 h-6 text-white hover:text-orange-200"
+          />
+          <a href="/config/">Configuracion</a>
+        </div>
+
+        <div
+          class="flex items-center gap-2 cursor-pointer ml-2 transition duration-300 hover:text-orange-200 hover:scale-110"
+        >
+          <Icon
+            name={"usuariosConfig"}
+            class="w-8 h-8 text-white hover:text-orange-200"
+          />
+          <a>Usuarios</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div
+    class="grid lg:grid-cols-[1fr_3fr] md:grid-cols-[1fr_2fr] text-center sm:ml-0 mt-auto mb-5 -ml-40 w-full"
+  >
+    <div class="">
+      <a href="/perfil" class="">
+        <button
+          class="[perspective:1000px] flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 transition-colors cursor-pointer"
+          id="btn-exit"
+        >
+          <span
+            class="img_perfil_generus w-12 h-12 transition-all ease-in-out
+  [transform-style:preserve-3d] duration-1000 ease-in-out hover:[transform:rotateY(360deg)]"
+          >
+            <img src="/src/icons/hombre.png" alt="" />
+          </span>
+        </button>
+      </a>
+    </div>
+    <div class="grid grid-rows-2 min-w-0 h-full">
+      <span
+        class="text-white break-words text-sm text-start flex flex-col justify-end"
+        >Administrador
+      </span>
+      <span class="text-white truncate text-sm text-start flex flex-col"
+        >Administrador@ocaglobal.com</span
+      >
+    </div>
+  </div>
+</aside>
+<script src="/src/utils/menuAside/menu.js"></script>

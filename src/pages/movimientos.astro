@@ -1,0 +1,87 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import { Icon } from "astro-icon/components";
+import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
+import EditarAccesorio from "../components/modales/editarAccesorio.astro";
+import CargarActas from "../components/modales/cargarActas.astro";
+import ModalActa from "../components/Actas/ModalActa.astro";
+import RegistroElementos from "../components/Actas/RegistroElementos.astro";
+---
+
+<Layoutv2 titulo={"Soporte > Movimientos"}>
+  <div class="flex flex-col w-full px-10 gap-y-5">
+    <div class="conten_1 duration-300 h-[50px] w-full mt-5">
+      <h2 class="font-bold text-2xl">Registro de Movimientos</h2>
+      <h6>Gestione la asignación y devolución de activos</h6>
+    </div>
+    <div
+      class="flex flex-row gap-y-2.5 justify-between items-center w-full h-full"
+    >
+    </div>
+
+    <div id="tabla-movimientos" class="w-23/24 self-center mt-3 .tablas"></div>
+    <div class="conten_5 duration-300 h-[50px] w-full flex justify-end gap-x-6">
+      <button
+        id="btn_realizar_formulario"
+        class="border text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 rounded-sm bg-gray-100 py-2.5 w-[180px] flex items-center active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
+        >REALIZAR FORMULARIO</button
+      >
+      <button
+        id="btn_generar_acta"
+        class="border px-2.5 text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 bg-gray-100 w-[180px] active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
+        >GENERAR ACTA</button
+      >
+      <div class="h-full">
+        <button
+          id="cargar_robo"
+          class="border border-2 bg-gray-100 text-red-700 font-bold px-2 cursor-pointer h-full flex justify-center items-center rounded-md active:scale-95 hover:bg-red-700 hover:text-gray-100 transition-all duration-200"
+        >
+          <span class="">
+            <Icon name={"robo"} />
+          </span>
+          CARGAR ROBO</button
+        >
+      </div>
+    </div>
+  </div>
+
+  <EditarAccesorio
+    cancelar_editar_accesorio="cancelar_edit_accesorio"
+    guardar_editar_accesorio="guardar_edit_accesorio"
+  />
+  {/* Modal para Acta de Robo */}
+  <ModalActa
+    idModal="modal_acta_robo"
+    titulo="Confirmar Generación Acta de Robo"
+    icono="documentCheck"
+    mostrarCargue={true}
+    idCancelar="cancelar_Robo"
+    idConfirmar="confirmar_acta_robo"
+    textoCancelar="Volver"
+    textoConfirmar="Confirmar y Generar"
+    elementos={[
+      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
+      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
+    ] as ElementoActa[]}
+  />
+
+  {/* Modal para Confirmar Generación de Acta */}
+  <ModalActa
+    idModal="modal_generar_actas"
+    titulo="Generación de Actas"
+    icono="documentCheck"
+    mostrarCargue={false}
+    idCancelar="cancelar_generar_acta"
+    idConfirmar="confirmar_generar_acta"
+    textoCancelar="Volver"
+    textoConfirmar="Confirmar y Generar"
+    elementos={[
+      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
+      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
+    ] as ElementoActa[]}
+  />
+
+  <RegistroElementos />
+</Layoutv2>
+<script src="../utils/movimientos/tablaMovimientos.js"></script>
+<script src="../utils/movimientos/scripts_botones.js"></script>

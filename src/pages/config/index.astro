@@ -1,0 +1,74 @@
+---
+import Layoutv2 from "../../layouts/Layoutv2.astro";
+import TituloInicial from "../../components/baseModales/tituloInicial.astro";
+import Cards from "../../components/cards/Cards.astro";
+---
+
+<Layoutv2 titulo="Editar Formulario">
+  <div class="flex flex-col w-full px-10 gap-y-5 mb-5">
+    <TituloInicial
+      titulo="Configuracion"
+      texto="Configure y administre las opciones de su entorno"
+    />
+    <section class="flex flex-col w-full h-full gap-y-2.5">
+      <section class="w-full h-60 flex *:bg-white *:rounded-lg gap-x-1">
+        <Cards
+          name="camera"
+          titulo="Configurar Formulario"
+          descripcion="Ingrese y configure las preguntas del formulario de asignacion de equipos"
+          accion_button="Manage builder"
+          size="md"
+          hrefLink="/config/enlaces/formulario"
+        />
+        <Cards
+          name="camera"
+          titulo="configurar Camara"
+          descripcion="camara"
+          accion_button="Manage camera"
+          size="md"
+        />
+      </section>
+      <section class="w-full h-60 flex gap-x-1 [&>*]: [&>*]:rounded-lg">
+        <Cards
+          name="alertas"
+          titulo="Notificaciones"
+          descripcion="Set up and manage your notification prefere"
+          accion_button="Manage camera"
+        />
+        <Cards
+          name="alertas"
+          titulo="Notificaciones"
+          descripcion="Set up and manage your notification prefere"
+          accion_button="Integracion"
+        />
+        <Cards
+          name="alertas"
+          titulo="Ajustes de cuentas"
+          descripcion="Set up and manage your"
+          accion_button="Integracion"
+          dark
+        />
+      </section>
+      <section class="w-full h-auto flex [&>*]:rounded-lg gap-x-1">
+        <Cards
+          name="alertas"
+          titulo="Ajustes de cuentas"
+          descripcion="Set up and manage your"
+          accion_button="Integracion"
+          dark
+          size="md"
+          info
+          infoDescripcion="MANTENIMIENTO"
+        />
+        <Cards
+          name="alertas"
+          titulo="Ajustes de cuentas"
+          descripcion="Set up and manage your"
+          accion_button="Integracion"
+          dark
+          size="sm"
+        />
+      </section>
+    </section>
+  </div>
+</Layoutv2>

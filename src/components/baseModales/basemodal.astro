@@ -1,0 +1,25 @@
+---
+const { class: className = "", id } = Astro.props;
+---
+
+<div
+  id={id}
+  class={` flex items-center h-full justify-center bg-gray-300/50 w-full m-0 opacity-0 pointer-events-none  fixed inset-0 transition-all duration-300 scale-95`}
+>
+  <div
+    class={`w-150 h-140 flex flex-col justify-around rounded-2xl bg-white gap-x-2.5 ${className}`}
+  >
+    <div class="flex flex-col justify-center w-full h-2/12">
+      <slot name="titulo" />
+    </div>
+    <div class="flex flex-col justify-start items-start w-full h-7/12">
+      <slot name="body" />
+    </div>
+
+    <div
+      class="flex flex-col justify-between items-end w-full h-2/12 -mb-5 px-4"
+    >
+      <slot name="botones" />
+    </div>
+  </div>
+</div>

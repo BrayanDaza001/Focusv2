@@ -1,0 +1,120 @@
+---
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+import Cancelar from "../botones/cancelar.astro";
+import { Icon } from "astro-icon/components";
+import TitulosActas from "../titulos/titulosActas.astro";
+import Cargue from "../input_cargue/cargue.astro";
+const registros = [
+  {
+    id: 1,
+    imagen: "mouse",
+    nombre: "Mouse Óptico Logitech",
+    categoria: "Periféricos",
+    stock: 42,
+    fecha: "2026-04-01",
+    estado: "Asignado",
+  },
+  {
+    id: 2,
+    imagen: "keyboard",
+    nombre: "Teclado Mecánico Redragon",
+    categoria: "Periféricos",
+    stock: 15,
+    fecha: "2026-04-02",
+    estado: "Disponible",
+  },
+  {
+    id: 3,
+    imagen: "monitor",
+    nombre: 'Monitor 24" Samsung',
+    categoria: "Pantallas",
+    stock: 2,
+    fecha: "2026-04-03",
+    estado: "Asignado",
+  },
+  {
+    id: 4,
+    imagen: "laptop",
+    nombre: "Laptop HP EliteBook",
+    categoria: "Computadores",
+    stock: 5,
+    fecha: "2026-04-04",
+    estado: "En mantenimiento",
+  },
+  {
+    id: 5,
+    imagen: "printer",
+    nombre: "Impresora Epson L3250",
+    categoria: "Oficina",
+    stock: 8,
+    fecha: "2026-04-05",
+    estado: "Disponible",
+  },
+  {
+    id: 6,
+    imagen: "headphones",
+    nombre: "Audífonos Sony WH-1000XM4",
+    categoria: "Audio",
+    stock: 12,
+    fecha: "2026-04-06",
+    estado: "Asignado",
+  },
+];
+---
+
+<div
+  id="modal_registro_elementos"
+  class="flex items-center w-full h-full justify-center bg-gray-300/50 opacity-0 pointer-events-none fixed inset-0"
+>
+  <div
+    class="space-y-4 bg-white w-120 p-2 flex flex-col justify-center rounded-2xl"
+  >
+    <div class="flex gap-x-3 justify-start items-center">
+      <TitulosActas
+        icono={"documentCheck"}
+        titulo={"Registro de Estados del elemento"}
+      />
+    </div>
+    <form class="bg-white h-auto border-t-[0.2px] border-zinc-200 w-full">
+      <div class="w-full h-auto p-4">
+        <div class="space-y-2 w-full rounded-md p-1">
+          <h3 class="text-gray-700 font-semibold">Estado general</h3>
+          <select name="estados" id="estado">
+            <option value="">Seleccionar estado..</option>
+          </select>
+        </div>
+        <div class="w-full flex flex-col mt-2">Hola</div>
+        <div class="w-full flex flex-col mt-2">
+          <label for="textarea-observaciones" class="font-bold"
+            >Observaciones</label
+          >
+
+          <textarea
+            id="textarea-observaciones"
+            name="textarea-observaciones"
+            placeholder="Escriba acá las observaciones"
+            class="border border-blue-400 activate:border-blue-400"></textarea>
+        </div>
+      </div>
+      <div class="w-full flex justify-center items-center flex-col px-3.5">
+        <div class="mb-2 w-full h-full flex flex-row space-x-3">
+          <Icon name={"camera"} class={"text-blue-500 w-6 h-6"} />
+          <p class="text-gray-700 font-semibold">Carga de fotos</p>
+        </div>
+
+        <Cargue
+          texto={"Arrastra y suelta imágenes aquí"}
+          formatos={"Formatos soportados: JPG, PNG (Max 5MB)"}
+          para={"actaEstadoElemento"}
+        />
+      </div>
+    </form>
+    <div class="flex felx-col justify-between p-1 mt-3">
+      <Cancelar textcontent={"Volver"} idB="cancelar_formulario" />
+      <Botonconfirmar
+        idBC="confirmar_formulario"
+        textcontent={"Confirmar y Generar"}
+      />
+    </div>
+  </div>
+</div>

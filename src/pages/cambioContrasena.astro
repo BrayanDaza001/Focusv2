@@ -1,0 +1,128 @@
+---
+import "../styles/global.css";
+import { Icon } from "astro-icon/components";
+import ModalRespuesta from "../components/modalRespuesta.astro";
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="generator" content={Astro.generator} />
+  <title>F.O.C.U.S</title>
+</head>
+<body>
+  <ModalRespuesta />
+  <main class="font-display z-0">
+    <div
+      class="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden p-4"
+    >
+      <div
+        class="relative w-full max-w-xl mx-auto z-10 items-center justify-center gap-12 lg:gap-16 bg-gray-400/20 backdrop-blur-xl p-8 rounded-xl border border-gray-100 border--b-white shadow-2xl shadow-gray-500"
+      >
+        <div class="flex flex-col items-center">
+          <div class="w-full max-w-md">
+            <div class="mb-6 flex items-center justify-center"></div>
+            <h1
+              class="text-[#111418] tracking-tight text-3xl font-bold text-center pb-2 pt-2"
+            >
+              Cambio de contraseña
+            </h1>
+            <p
+              class="text-muted-light dark:text-muted-dark text-base font-normal text-center pb-8"
+            >
+              Recuerda que debe tener minimo 8 caracteres, una mayuscula una
+              minuscula y un caracter especial.
+            </p>
+            <div class="flex w-full flex-col items-center gap-4">
+              <label class="flex flex-col w-full">
+                <p
+                  class="text-[#111418] text-sm font-medium leading-normal pb-2"
+                >
+                  Contraseña nueva
+                </p>
+                <div
+                  class="flex w-full flex-1 items-stretch rounded-lg border border-[#dbe0e6] focus-within:ring-2 focus-within:ring-slate-500 password-group"
+                >
+                  <input
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#111418] focus:outline-0 focus:ring-0 border-0 bg-white h-12 placeholder:text-[#617589] dark:placeholder:text-gray-500 px-4 pr-2 text-base font-normal leading-normal password-input"
+                    placeholder="Ingresa tu usuario"
+                    type="text"
+                    id="input-nueva"
+                  />
+                  <div
+                    class="text-[#617589] flex bg-white items-center justify-center pr-4 rounded-r-lg"
+                  >
+                    <span
+                      class="material-symbols-outlined cursor-pointer"
+                      data-icon="visibility"
+                      ><Icon
+                        name="openEye"
+                        class="w-8 h-8 text-gray-700/70 icon-open"
+                        id="icon-login-open"
+                      />
+                      <Icon
+                        name="closeEye"
+                        class="w-8 h-8 text-gray-700/70 hidden icon-close"
+                        id="icon-login-close"
+                      /></span
+                    >
+                  </div>
+                </div>
+              </label>
+              <label class="flex flex-col w-full">
+                <p
+                  class="text-[#111418] text-sm font-medium leading-normal pb-2"
+                >
+                  Confirmar contraseña
+                </p>
+                <div
+                  class="flex w-full flex-1 items-stretch rounded-lg border border-[#dbe0e6] focus-within:ring-2 focus-within:ring-slate-500 password-group"
+                >
+                  <input
+                    class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-l-lg text-[#111418] focus:outline-0 focus:ring-0 border-0 bg-white h-12 placeholder:text-[#617589] dark:placeholder:text-gray-500 px-4 pr-2 text-base font-normal leading-normal password-input"
+                    placeholder="Ingresa tu contraseña"
+                    type="text"
+                    value=""
+                    id="input-password"
+                  />
+                  <div
+                    class="text-[#617589] flex bg-white items-center justify-center pr-4 rounded-r-lg"
+                  >
+                    <span
+                      class="material-symbols-outlined cursor-pointer"
+                      data-icon="visibility"
+                      ><Icon
+                        name="openEye"
+                        class="w-8 h-8 text-gray-700/70 icon-open"
+                        id="icon-login-open"
+                      />
+                      <Icon
+                        name="closeEye"
+                        class="w-8 h-8 text-gray-700/70 hidden icon-close"
+                        id="icon-login-close"
+                      /></span
+                    >
+                  </div>
+                </div>
+              </label>
+
+              <div class="w-full flex flex-col gap-4 mt-4">
+                <button
+                  class="flex w-full items-center justify-center rounded-lg bg-slate-600 text-white text-base font-bold h-12 hover:bg-slate-300 hover:text-slate-500 transition-all shadow-lg shadow-slate-400/20 cursor-pointer"
+                  id="btn-change"
+                >
+                  Ingresar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+<script src="../utils/contrasena/cambio.js"></script>
+<script src="../utils/login/ver.js"></script>
+<script src="../utils/contrasena/tokenActivo.js"></script>

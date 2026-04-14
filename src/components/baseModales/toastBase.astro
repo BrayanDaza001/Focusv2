@@ -1,0 +1,61 @@
+---
+const {
+  class: className = "",
+  texto,
+  id,
+  iconClass,
+  title,
+  aceptar = "Continuar",
+  elemento = "Prueba",
+} = Astro.props;
+import TituloBase from "../titulos/tituloBase.astro";
+import TextosBase from "../textos/textosBase.astro";
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+import Cancelar from "../botones/cancelar.astro";
+import DivBotones from "./divBotones.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<div
+  id={id}
+  class="flex items-center h-full justify-center bg-gray-300/50 w-full opacity-0 pointer-events-none rounded-2xl z-1 transition-all scale-95 inset-0 fixed"
+>
+  <div
+    class={`z-2 space-y-1 bg-white h-70 w-110  justify-center${className} rounded-2xl `}
+  >
+    <div class="flex justify-center items-center h-4/12">
+      <div
+        class="bg-red-200 rounded-full w-15 h-15 flex justify-center items-center pb-1"
+      >
+        <Icon
+          name="mdi:alert"
+          class={`w-[40px] h-[40px] ${iconClass} text-red-500`}
+        />
+      </div>
+    </div>
+    <div class="bg-white h-8/12 w-full rounded-b-2xl">
+      <div
+        class="w-full flex flex-col py-2 px-6 h-1/2 justify-between rounded-md items-center space-y-3"
+      >
+        <TituloBase titulo={title} data-toast-title="error" />
+        <TextosBase
+          contenido={`${elemento}"Teclado Mecánico"? Esta acción no se puede
+deshacer.`}
+        />
+      </div>
+      <div class="flex flex-col justify-center p-1 mt-1 h-1/2">
+        <DivBotones class="justify-around">
+          <Cancelar
+            idB="cancelar_eliminar_accesorio"
+            textcontent="No, Cancelar"
+          />
+          <Botonconfirmar
+            idBC="confirmar_eliminar_accesorio"
+            textcontent={"Si, eliminar"}
+            tipo="error"
+          />
+        </DivBotones>
+      </div>
+    </div>
+  </div>
+</div>

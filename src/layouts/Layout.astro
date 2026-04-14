@@ -1,0 +1,35 @@
+---
+import Header from "../components/header.astro";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <meta name="generator" content={Astro.generator} />
+    <title>F.O.C.U.S</title>
+  </head>
+  <body
+    class="font-display bg-background-light dark:bg-background-dark min-h-screen flex flex-col w-full h-100vh"
+  >
+    <Header />
+    <slot />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+<!-- <script src="../utils/login/tokenActivo.js"></script> -->

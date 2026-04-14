@@ -1,0 +1,49 @@
+---
+import CuerpoBase from "../baseModales/cuerpo_base.astro";
+import TituloBase from "../titulos/tituloBase.astro";
+import LabelBase from "../baseModales/labelBase.astro";
+import Baseinput from "../baseModales/baseinput.astro";
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+import Cancelar from "../botones/cancelar.astro";
+import Select from "../baseModales/select.astro";
+---
+
+<CuerpoBase className="justify-start pt-3.5 pb-3.5 h-auto  ">
+  <TituloBase titulo="Crear pregunta Nueva" slot="titulo" />
+  <div class="w-full h-full" slot="fields">
+    <LabelBase textL="Descripcion" forLabel="texto-pregunta" slot="fields" />
+    <Baseinput
+      typeIn="text"
+      placeH="Ej: estado del equipo"
+      dataId="texto-pregunta-id"
+      name="texto-pregunta"
+      id="input-texto-pregunta"
+    />
+  </div>
+  <div class="w-full h-full" slot="fields">
+    <LabelBase textL="Tipo de Campo" forLabel="select-options" slot="fields" />
+    <Select dataSelect={["Seleccion unica"]} nameSelect="select-options" />
+  </div>
+  <div class="w-full h-full flex items-center justify-between" slot="fields">
+    <div class="h-full w-10/12">
+      <LabelBase
+        textL="¿Pregunta requerida?"
+        forLabel="select-options"
+        slot="fields"
+      />
+    </div>
+    <div class="h-full w-1/24">
+      <Baseinput
+        typeIn="checkbox"
+        placeH="Ej: estado del equipo"
+        dataId="texto-pregunta-id"
+        name="texto-pregunta"
+        id="input-texto-pregunta"
+      />
+    </div>
+  </div>
+  <div slot="botones" class="flex justify-between">
+    <Cancelar textcontent="Cancelar" idB="cancelar-crear-pregunta" />
+    <Botonconfirmar textcontent="Guardar Pregunta" idBC="btn-crear-pregunta" />
+  </div>
+</CuerpoBase>

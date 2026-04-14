@@ -1,0 +1,24 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import Observacion from "../components/observacion.astro";
+import Confirmacion from "../components/confirmacion.astro";
+import Actualizar from "../components/actualizar.astro";
+import ObservacionInput from "../components/observacionInput.astro";
+import ConfirmacionError from "../components/confirmacionError.astro";
+import Precios from "../components/precios.astro";
+import ExonerarFactura from "../components/exonerarFactura.astro";
+---
+
+<Layoutv2 titulo={"Facturacion > Alertas"}>
+  <div id="table-alert" class="w-23/24 self-center mt-15"></div>
+  <Observacion />
+  <Confirmacion />
+  <Actualizar />
+  <ObservacionInput />
+  <ConfirmacionError />
+  <Precios />
+  <ExonerarFactura />
+</Layoutv2>
+
+<script src="../utils/tablas/tablas.js"></script>
+<script src="../utils/tablas/btns.js"></script>

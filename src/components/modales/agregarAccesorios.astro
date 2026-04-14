@@ -1,0 +1,58 @@
+---
+import CuerpoBase from "../baseModales/cuerpo_base.astro";
+import TitulosActas from "../titulos/titulosActas.astro";
+import Baseinput from "../baseModales/baseinput.astro";
+import LabelBase from "../baseModales/labelBase.astro";
+import Select from "../baseModales/select.astro";
+import DivBotones from "../baseModales/divBotones.astro";
+import Cancelar from "../botones/cancelar.astro";
+import Botonconfirmar from "../botones/botonconfirmar.astro";
+interface Props {
+  cancelar_agregar: string;
+  guardar_agregar: string;
+  id: string;
+  titulo: string;
+  disabled?: boolean;
+}
+const { titulo, cancelar_agregar, guardar_agregar, id, disabled } = Astro.props;
+---
+
+<CuerpoBase className="h-auto" id={id}>
+  <TitulosActas slot="titulo" titulo={titulo} icono="mdi:file-document" />
+
+  <div slot="fields">
+    <LabelBase
+      textL="Nombre del Accesorio"
+      forLabel="accesorio"
+      placeH="Ej: Mouse"
+    />
+    <Baseinput
+      nameIn="accesorio"
+      placeH="Ej: Mouse Ergonómico Logitech"
+      dataId="accesorio"
+      disabled={disabled}
+    />
+  </div>
+
+  <div slot="fields" class="mt-2">
+    <LabelBase textL="Categoria" forLabel={"categoria"} />
+    <div class="flex flex-row space-x-2">
+      <Select nameIn="categoria" dataId="categoria">
+        <option value="">Seleccione una categoría</option>
+        <option value="mouse">Mouse</option>
+        <option value="teclado">Teclado</option>
+        <option value="audifonos">Audífonos</option>
+      </Select>
+      <Baseinput
+        nameIn="cantidad"
+        placeH="Cantidad"
+        typeIn="number"
+        dataId="cantidad"
+      />
+    </div>
+  </div>
+  <DivBotones slot="botones">
+    <Cancelar idB={cancelar_agregar} textcontent="Cancelar" />
+    <Botonconfirmar idBC={guardar_agregar} textcontent="Guardar Accesorio" />
+  </DivBotones>
+</CuerpoBase>
