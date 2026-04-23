@@ -10,8 +10,7 @@ const {
 } = Astro.props;
 import TituloBase from "../titulos/tituloBase.astro";
 import TextosBase from "../textos/textosBase.astro";
-import Botonconfirmar from "../botones/botonconfirmar.astro";
-import Cancelar from "../botones/cancelar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 import DivBotones from "./divBotones.astro";
 import { Icon } from "astro-icon/components";
 ---
@@ -45,14 +44,15 @@ deshacer.`}
       </div>
       <div class="flex flex-col justify-center p-1 mt-1 h-1/2">
         <DivBotones class="justify-around">
-          <Cancelar
-            idB="cancelar_eliminar_accesorio"
+          <BotonBase
+            tipo="cancelar"
+            idBC="cancelar_eliminar_accesorio"
             textcontent="No, Cancelar"
           />
-          <Botonconfirmar
-            idBC="confirmar_eliminar_accesorio"
-            textcontent={"Si, eliminar"}
+          <BotonBase
             tipo="error"
+            idBC="confirmar_eliminar_accesorio"
+            textcontent="Si, eliminar"
           />
         </DivBotones>
       </div>

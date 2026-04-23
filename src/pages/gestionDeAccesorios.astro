@@ -3,8 +3,8 @@ import Layoutv2 from "../layouts/Layoutv2.astro";
 import { Icon } from "astro-icon/components";
 import TituloInicial from "../components/baseModales/tituloInicial.astro";
 import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
-import EditarAccesorio from "../components/modales/editarAccesorio.astro";
 import ToastBase from "../components/baseModales/toastBase.astro";
+import ModalEdicionGrid from "../components/modales/ModalEdicionGrid.astro";
 ---
 
 <Layoutv2 titulo={"Soporte > Consulta y Registro"}>
@@ -54,11 +54,16 @@ import ToastBase from "../components/baseModales/toastBase.astro";
     id="modal_crear_accesorios"
     titulo="Crear nuevo accesorio"
   />
-  <EditarAccesorio
-    cancelar_editar_accesorio="cancelar-edit-accesorio"
-    guardar_editar_accesorio="guardar-edit-accesorio"
+  <ModalEdicionGrid
+    id="grid-edit-modal"
+    titulo="Editar accesorio"
+    descripcion="Actualiza la información del accesorio seleccionado."
   />
-  <ToastBase id="borrar_accesorio" title="Eliminar Accesorio" />
+  <ToastBase
+    id="borrar_accesorio"
+    title="Eliminar Accesorio"
+    colorBase="text-white"
+  />
 </Layoutv2>
 
 <script src="../utils/accesorios/tablaAccesorios.js"></script>

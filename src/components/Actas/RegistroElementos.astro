@@ -1,6 +1,5 @@
 ---
-import Botonconfirmar from "../botones/botonconfirmar.astro";
-import Cancelar from "../botones/cancelar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 import { Icon } from "astro-icon/components";
 import TitulosActas from "../titulos/titulosActas.astro";
 import Cargue from "../input_cargue/cargue.astro";
@@ -110,10 +109,15 @@ const registros = [
       </div>
     </form>
     <div class="flex felx-col justify-between p-1 mt-3">
-      <Cancelar textcontent={"Volver"} idB="cancelar_formulario" />
-      <Botonconfirmar
+      <BotonBase
+        tipo="cancelar"
+        textcontent="Volver"
+        idBC="cancelar_formulario"
+      />
+      <BotonBase
+        tipo="default"
+        textcontent="Confirmar y Generar"
         idBC="confirmar_formulario"
-        textcontent={"Confirmar y Generar"}
       />
     </div>
   </div>

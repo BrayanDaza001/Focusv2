@@ -1,7 +1,7 @@
 ---
 import Layoutv2 from "../../../layouts/Layoutv2.astro";
 import BotonGuardar from "../../../components/botones/BotonGuardar.astro";
-import EditFormulario from "../../../components/modales/EditFormulario.astro";
+import ModalEdicionGrid from "../../../components/modales/ModalEdicionGrid.astro";
 ---
 
 <Layoutv2 titulo="Editar Formulario">
@@ -21,6 +21,10 @@ import EditFormulario from "../../../components/modales/EditFormulario.astro";
       </div>
     </div>
   </div>
-  <EditFormulario />
+  <ModalEdicionGrid
+    id="grid-edit-modal"
+    titulo="Editar pregunta"
+    descripcion="Actualiza la configuración de la pregunta seleccionada."
+  />
 </Layoutv2>
 <script src="../../../utils/config/tabla_formulario.js"></script>

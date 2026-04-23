@@ -1,6 +1,5 @@
 ---
-import Botonconfirmar from "../botones/botonconfirmar.astro";
-import Cancelar from "../botones/cancelar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 import { Icon } from "astro-icon/components";
 import TitulosActas from "../titulos/titulosActas.astro";
 import Cargue from "../input_cargue/cargue.astro";
@@ -78,8 +77,16 @@ const {
         )
       }
       <div class="flex felx-col justify-between p-1 mt-3">
-        <Cancelar textcontent={textoCancelar} idB={idCancelar} />
-        <Botonconfirmar idBC={idConfirmar} textcontent={textoConfirmar} />
+        <BotonBase
+          tipo="cancelar"
+          textcontent={textoCancelar}
+          idBC={idCancelar}
+        />
+        <BotonBase
+          tipo="default"
+          textcontent={textoConfirmar}
+          idBC={idConfirmar}
+        />
       </div>
     </div>
   </div>

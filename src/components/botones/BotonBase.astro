@@ -1,0 +1,44 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  tipo?: "default" | "aceptar" | "error" | "cancelar";
+  textcontent: string;
+  idBC: string;
+  class?: string;
+  iconName?: string; // nombre del icono opcional
+  showIcon?: boolean; // mostrar icono o no
+}
+
+const {
+  idBC,
+  textcontent,
+  tipo = "default",
+  class: className = "",
+  iconName = "",
+  showIcon = false,
+} = Astro.props as Props;
+
+const estilos = {
+  default:
+    "bg-[rgb(37,99,235)] text-white active:bg-blue-800 hover:bg-blue-800 hover:text-white transition-all duration-200",
+  aceptar: "bg-green-500 active:bg-green-700 hover:shadow-md",
+  error: "bg-[rgb(244,63,94)] text-white active:bg-red-700",
+  cancelar:
+    "bg-white text-[rgb(100,116,139)] hover:text-white hover:bg-gray-300/70 shadow-2xs",
+};
+---
+
+<button
+  id={idBC}
+  class={`font-bold rounded-lg py-2 px-4 w-[200px] h-10 cursor-pointer transition-all active:scale-90 ${estilos[tipo]} ${className}`}
+>
+  {
+    showIcon && iconName && (
+      <span class="inline-block align-middle mr-2">
+        <Icon name={iconName} />
+      </span>
+    )
+  }
+  {textcontent}
+</button>

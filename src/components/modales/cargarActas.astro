@@ -3,8 +3,7 @@ import Basemodal from "../baseModales/basemodal.astro";
 import TituloBase from "../titulos/tituloBase.astro";
 import Cargue from "../input_cargue/cargue.astro";
 import DivBotones from "../baseModales/divBotones.astro";
-import Cancelar from "../botones/cancelar.astro";
-import Botonconfirmar from "../botones/botonconfirmar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 import TextosBase from "../textos/textosBase.astro";
 interface Props {
   cancelar_btn: string;
@@ -45,7 +44,11 @@ const { cancelar_btn, cargar_btn, id } = Astro.props;
     </div>
   </div>
   <DivBotones slot="botones">
-    <Cancelar idB={cancelar_btn} textcontent="Cancelar" />
-    <Botonconfirmar idBC={cargar_btn} textcontent="Guardar Accesorio" />
+    <BotonBase tipo="cancelar" idBC={cancelar_btn} textcontent="Cancelar" />
+    <BotonBase
+      tipo="default"
+      idBC={cargar_btn}
+      textcontent="Guardar Accesorio"
+    />
   </DivBotones>
 </Basemodal>

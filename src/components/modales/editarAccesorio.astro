@@ -7,8 +7,7 @@ import Baseinput from "../baseModales/baseinput.astro";
 import Select from "../baseModales/select.astro";
 import BaseTextarea from "../baseModales/baseTextarea.astro";
 import DivBotones from "../baseModales/divBotones.astro";
-import Cancelar from "../botones/cancelar.astro";
-import Botonconfirmar from "../botones/botonconfirmar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 interface Props {
   cancelar_editar_accesorio: string;
   guardar_editar_accesorio: string;
@@ -72,8 +71,13 @@ const { cancelar_editar_accesorio, guardar_editar_accesorio } = Astro.props;
       </div>
     </div>
     <DivBotones slot="botones">
-      <Cancelar idB={cancelar_editar_accesorio} textcontent="Cancelar" />
-      <Botonconfirmar
+      <BotonBase
+        tipo="cancelar"
+        idBC={cancelar_editar_accesorio}
+        textcontent="Cancelar"
+      />
+      <BotonBase
+        tipo="error"
         idBC={guardar_editar_accesorio}
         textcontent="Actualizar Cambios"
       />

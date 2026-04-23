@@ -1,5 +1,5 @@
 ---
-import Botonconfirmar from "../botones/botonconfirmar.astro";
+import BotonBase from "../botones/BotonBase.astro";
 import { Icon } from "astro-icon/components";
 import TituloBase from "../titulos/tituloBase.astro";
 const { nombre, documento } = Astro.props;
@@ -23,7 +23,8 @@ const { nombre, documento } = Astro.props;
   <div class="w-7/12 h-full relative flex justify-center items-center">
     <div class="flex items-center justify-center relative w-full mr-2 h-full">
       <!-- <Icon name="folder" class="absolute text-white w-8 h-8 left-6" /> -->
-      <Botonconfirmar
+      <BotonBase
+        tipo="default"
         idBC="descargue_pdf"
         textcontent="DESCARGUE PAZ Y SALVO INDIVIDUAL (PDF)"
         class="w-[800px] h-[60px] text-lg font-semibold"

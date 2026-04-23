@@ -72,6 +72,17 @@ width: 100%;
   align-items: center;
   
 }
+#tabla-usuarios .gridjs-input{
+  width: 100%;
+  padding-left: 28px;
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+}
+#tabla-usuarios .gridjs-input::placeholder{
+  color: rgb(148 163 184 / 1);
+}
 .gridjs-input:focus{
   background:rgba(59,130,246,0.1);
   padding-left: 28px; /* espacio para el icono */

@@ -2,7 +2,7 @@
 import Layoutv2 from "../layouts/Layoutv2.astro";
 import TituloInicial from "../components/baseModales/tituloInicial.astro";
 import ActivarDesactivar from "../components/modales/ActivarDesactivar.astro";
-import EditarProyecto from "../components/modales/EditarProyecto.astro";
+import ModalEdicionGrid from "../components/modales/ModalEdicionGrid.astro";
 ---
 
 <Layoutv2 titulo="Facturacion > Siigo">
@@ -19,7 +19,11 @@ import EditarProyecto from "../components/modales/EditarProyecto.astro";
     <input type="text" slot="field" />
   </div>
   <ActivarDesactivar id_modal={"toogle_accion"} />
-  <EditarProyecto />
+  <ModalEdicionGrid
+    id="grid-edit-modal"
+    titulo="Editar nomenclatura"
+    descripcion="Actualiza la relación entre GLPI, Siigo y el código seleccionado."
+  />
 </Layoutv2>
 
 <script src="../utils/siigo/tabla_nomenclatura.js"></script>

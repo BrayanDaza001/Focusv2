@@ -1,7 +1,8 @@
 ---
 import Layoutv2 from "../layouts/Layoutv2.astro";
 import TituloInicial from "../components/baseModales/tituloInicial.astro";
-import Botonconfirmar from "../components/botones/botonconfirmar.astro";
+import BotonBase from "../components/botones/BotonBase.astro";
+import CargarActas from "../components/modales/cargarActas.astro";
 import SinDatos from "../components/modales/SinDatos.astro";
 ---
 
@@ -12,12 +13,18 @@ import SinDatos from "../components/modales/SinDatos.astro";
   </div>
   <div class="flex items-center justify-end w-[95%]
   mt-2">
-    <Botonconfirmar
+    <BotonBase
       idBC="cargue_acta"
-      textcontent="Cargar acta"
+      textcontent="Cargar paz y salvo"
       tipo="default"
     />
   </div>
+  <CargarActas
+    cancelar_btn="btn_cancelar_cargue_pazysalvo"
+    cargar_btn="btn_cargar_cargue_pazysalvo"
+    id="modal_cargar_pazysalvo"
+  />
 </Layoutv2>
 
 <script src="../utils/pazYsalvo/paz.js"></script>
+<script src="../utils/pazYsalvo/modal_pazysalvo.js"></script>

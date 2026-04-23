@@ -34,7 +34,7 @@ const { titulo } = Astro.props;
       <Header titulo={titulo} />
 
       <!-- Contenido con scroll -->
-      <main class="flex-1 overflow-y-auto bg-[rgb(203,213,225,0.6)]">
+      <main class="flex-1 overflow-y-auto bg-[rgb(203,213,225,0.6)] relative">
         <slot />
       </main>
     </div>
