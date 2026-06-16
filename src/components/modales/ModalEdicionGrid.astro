@@ -18,14 +18,14 @@ const {
 
 <Basemodal
   id={id}
-  class="w-[95vw] max-w-[860px] h-auto min-h-[460px] max-h-[90vh] justify-start py-6 overflow-y-auto"
+  class="w-1/2 max-w-[860px] min-h-[200px] max-h-[90vh] justify-start py-4 overflow-y-auto"
 >
-  <div slot="titulo" class="w-full px-6 md:px-8">
+  <div slot="titulo" class="w-full px-6 md:px-8 +">
     <p
       id={`${id}-eyebrow`}
       class="text-xs font-semibold uppercase tracking-[0.24em] text-blue-600"
     >
-      Edici&oacute;n
+      Edicion
     </p>
     <h2 id={`${id}-title`} class="mt-2 text-2xl font-bold text-slate-800">
       {titulo}
@@ -40,19 +40,20 @@ const {
       <div
         id={`${id}-fields`}
         class="grid w-full grid-cols-1 gap-4 md:grid-cols-2"
-      ></div>
+      >
+      </div>
     </form>
   </div>
 
   <div
     slot="botones"
-    class="flex w-full flex-col-reverse gap-3 px-4 pb-2 md:flex-row md:justify-end"
+    class="flex w- flex-col-reverse gap-3 px-4 pb-2 md:flex-row md:justify-end rounded-b-2xl"
   >
     <Cancelar idB={`${id}-cancel`} textcontent="Cancelar" />
     <BotonConfirmar
       idBC={`${id}-confirm`}
       textcontent="Confirmar"
-      class="w-full md:w-[200px]"
+      class="w-full md:w-[250px] m-0 p-0 -mb-5"
     />
   </div>
 </Basemodal>

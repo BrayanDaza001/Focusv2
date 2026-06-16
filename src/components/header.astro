@@ -6,14 +6,14 @@ const { titulo } = Astro.props;
 ---
 
 <header
-  class="text-white sshadow-[0px_4px_5px_3px_rgba(0,0,0,0.2)] mb-2 w-full"
+  class="bg-slate-200/90 w-full h-auto border-b border-slate-800/30 shadow-md"
 >
   <div class="py-4 flex justify-between items-center pr-10">
     <div
-      class="flex items-center bg-white rounded-2xl text-center sm:ml-7 right-0"
+      class="flex items-center bg-none rounded-2xl text-center sm:ml-7 right-0"
     >
       <button
-        class="flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 transition-colors cursor-pointer"
+        class="flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 transition-colors"
         id="btn-exit"
       >
         <span class="material-icons-outlined text-xl text-slate-900 font-bold"
@@ -22,22 +22,29 @@ const { titulo } = Astro.props;
       </button>
     </div>
     <div
-      class="flex group items-center bg-slate-900 t rounded-2xl text-center sm:ml-7 right-0 group cursor-pointer active:scale-95 active:bg-white transition-all duration-200 border border-slate-900"
+      class="group relative -mr-7 flex items-center rounded-md border border-slate-300 overflow-hidden cursor-pointer transition-all duration-300 hover:border-slate-700 hover:shadow-lg active:scale-95"
     >
+      <div
+        class="pointer-events-none absolute inset-0 bg-slate-800 -translate-x-full transition-transform duration-300 ease-out group-hover:translate-x-0"
+      >
+      </div>
+
       <button
-        class="flex items-center gap-2 px-4 py-2 rounded-md bg-opacity-20 hover:bg-opacity-30 cursor-pointer transition-all duration-200 hover:bg-white"
         id="btn-exit"
+        class="relative z-10 flex cursor-pointer items-center gap-2 px-4 py-2"
       >
         <span>
           <Icon
             name="close"
-            class="w-6 h-6 ext-white group-active:text-slate-900"
+            class="h-6 w-6 text-slate-900 transition-colors duration-300 group-hover:text-white"
           />
         </span>
+
         <span
-          class="material-icons-outlined text-xl group-active:text-slate-900"
-          >Salir</span
+          class="text-md text-slate-900 transition-colors duration-300 group-hover:text-white"
         >
+          Salir
+        </span>
       </button>
     </div>
   </div>

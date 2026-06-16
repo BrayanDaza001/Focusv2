@@ -3,15 +3,36 @@ import "gridjs/dist/theme/mermaid.css";
 import { lapiz } from "../../icons/lapiz";
 import { bindGridEditButtons } from "../global/gridEditModal";
 
-let preguntas = [
-  {
-    id: 1,
-    pregunta: "Como te llamas?",
-    tipo: "Texto"
-  }
-];
-
+const STORAGE_KEY = "preguntasFormulario";
+let preguntas = [];
 let grid = null;
+
+function cargarPreguntasIniciales() {
+  const local = window.localStorage.getItem(STORAGE_KEY);
+  if (local) {
+    try {
+      return JSON.parse(local);
+    } catch {
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
+  }
+
+  if (window.__PREGUNTAS_FORMULARIO) {
+    return window.__PREGUNTAS_FORMULARIO;
+  }
+
+  return [
+    {
+      id: 1,
+      pregunta: "Como te llamas?",
+      tipo: "Texto",
+    },
+  ];
+}
+
+function guardarPreguntas() {
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(preguntas));
+}
 
 function crearFilasFormulario() {
   return preguntas.map((pregunta, index) => [
@@ -25,7 +46,7 @@ function crearFilasFormulario() {
       >
         <span>${lapiz("w-5 h-5 text-blue-400 group-active:text-white")}</span>
       </button>
-    `)
+    `),
   ]);
 }
 
@@ -43,25 +64,25 @@ function renderTabla() {
         "Tipo",
         {
           name: "Acciones",
-          width: "120px"
-        }
+          width: "120px",
+        },
       ],
       data,
       pagination: {
         enabled: true,
-        limit: 10
+        limit: 10,
       },
       style: {
         th: {
           "background-color": "#0B3356",
           color: "white",
-          "text-align": "start"
+          "text-align": "start",
         },
         td: {
           "font-size": "14px",
-          color: "rgb(51,65,85)"
-        }
-      }
+          color: "rgb(51,65,85)",
+        },
+      },
     }).render(contenedor);
 
     return;
@@ -71,6 +92,7 @@ function renderTabla() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  preguntas = cargarPreguntasIniciales();
   renderTabla();
 
   const btn = document.getElementById("boton-edit-formulario");
@@ -80,9 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
     preguntas.push({
       id: Date.now(),
       pregunta: "Nueva pregunta",
-      tipo: "Texto"
+      tipo: "Texto",
     });
 
+    guardarPreguntas();
     renderTabla();
   });
 });
@@ -103,28 +126,29 @@ bindGridEditButtons({
       {
         name: "id",
         label: "ID",
-        readOnly: true
+        readOnly: true,
       },
       {
         name: "pregunta",
         label: "Pregunta",
-        fullWidth: true
+        fullWidth: true,
       },
       {
         name: "tipo",
         label: "Tipo",
         type: "select",
-        options: ["Texto", "Numero", "Fecha", "Seleccion"]
-      }
+        options: ["Texto", "Numero", "Fecha", "Seleccion"],
+      },
     ],
     onConfirm: ({ values, rowIndex: currentRowIndex }) => {
       preguntas[currentRowIndex] = {
         ...preguntas[currentRowIndex],
         ...values,
-        id: preguntas[currentRowIndex].id
+        id: preguntas[currentRowIndex].id,
       };
 
+      guardarPreguntas();
       renderTabla();
-    }
-  })
+    },
+  }),
 });

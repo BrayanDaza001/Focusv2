@@ -13,43 +13,40 @@ import Cards from "../../components/cards/Cards.astro";
     <section class="flex flex-col w-full h-full gap-y-2.5">
       <section class="w-full h-60 flex *:bg-white *:rounded-lg gap-x-1">
         <Cards
-          name="camera"
+          name="consulta"
           titulo="Configurar Formulario"
           descripcion="Ingrese y configure las preguntas del formulario de asignacion de equipos"
-          accion_button="Manage builder"
+          accion_button="Ingresar"
           size="md"
           hrefLink="/config/enlaces/formulario"
         />
         <Cards
-          name="camera"
-          titulo="configurar Camara"
-          descripcion="camara"
-          accion_button="Manage camera"
+          name="reporte"
+          titulo="Configurar Formulario de Paz y salvo"
+          descripcion="Preguntas del formulario de paz y salvo"
+          accion_button="Ingresar"
           size="md"
+          hrefLink="/config/enlaces/PazYsalvo"
         />
       </section>
-      <section class="w-full h-60 flex gap-x-1 [&>*]: [&>*]:rounded-lg">
-        <Cards
-          name="alertas"
-          titulo="Notificaciones"
-          descripcion="Set up and manage your notification prefere"
-          accion_button="Manage camera"
-        />
-        <Cards
-          name="alertas"
-          titulo="Notificaciones"
-          descripcion="Set up and manage your notification prefere"
-          accion_button="Integracion"
-        />
+      <!-- <section class="w-full h-60 flex gap-x-1 [&>*]: [&>*]:rounded-lg">
+        <!--         
         <Cards
           name="alertas"
           titulo="Ajustes de cuentas"
           descripcion="Set up and manage your"
           accion_button="Integracion"
           dark
-        />
-      </section>
-      <section class="w-full h-auto flex [&>*]:rounded-lg gap-x-1">
+        /> -->
+      <!-- <Cards
+          name="alertas"
+          titulo="Ajustes de cuentas"
+          descripcion="Set up and manage your"
+          accion_button="Integracion"
+          dark
+        /> 
+    </section> -->
+      <!-- <section class="w-full h-auto flex [&>*]:rounded-lg gap-x-1">
         <Cards
           name="alertas"
           titulo="Ajustes de cuentas"
@@ -68,7 +65,7 @@ import Cards from "../../components/cards/Cards.astro";
           dark
           size="sm"
         />
-      </section>
+      </section> -->
     </section>
   </div>
 </Layoutv2>

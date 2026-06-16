@@ -3,38 +3,35 @@ import "gridjs/dist/theme/mermaid.css";
 import { lapiz } from "../../icons/lapiz";
 import { onOff } from "../../icons/onoff";
 import { bindGridEditButtons } from "../global/gridEditModal";
+import { getProyectos,updateProyecto } from "../../services/proyectos";
 
-const productos = [
-  {
-    glpi: "Mouse Optico",
-    siigo: "Perifericos",
-    codigo: "ACC-001",
-    activado: true
-  },
-  {
-    glpi: "Teclado Mecanico",
-    siigo: "Perifericos",
-    codigo: "ACC-002",
-    activado: false
-  },
-  {
-    glpi: "Cargador Laptop Universal",
-    siigo: "Energia",
-    codigo: "ACC-003",
-    activado: true
-  },
-  {
-    glpi: "Monitor 24 UltraWide",
-    siigo: "Pantallas",
-    codigo: "ACC-004",
-    activado: true
+async function cargarProyectos() {
+  proyectos = await getProyectos();
+
+  console.log(proyectos);
+
+  renderTablaSiigo();
+}
+ async function actualizarProyecto(id, data) {
+  try {
+    await fetch(`http://localhost:3000/proyectos/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+  } catch (error) {
+    console.error("Error al actualizar el proyecto:", error);
   }
-];
+}
+
+let proyectos = [];
 
 let gridSiigo = null;
 
 function crearFilasSiigo() {
-  return productos.map((columna, index) => {
+  return proyectos.map((columna, index) => {
     const botones = html(`
       <div class="flex flex-row justify-center items-center gap-2 w-full" id="${index}">
         <button
@@ -44,13 +41,17 @@ function crearFilasSiigo() {
         >
           <span>${lapiz("w-5 h-5 text-blue-400 group-active:text-white")}</span>
         </button>
-        <button
-          data-id="toogle-${index}"
-          data-estado="${columna.activado}"
-          class="btn-toogle group p-1 rounded flex justify-center items-center cursor-pointer hover:scale-110 active:scale-90 ${columna.activado ? "active:bg-red-500/40" : "active:bg-green-500/40"} transition-all duration-200"
-        >
-          <span>${onOff(`w-5 h-5 group-active:text-white ${columna.activado ? "text-green-500" : "text-red-500"}`)}</span>
-        </button>
+       <button
+  data-id="toogle-${index}"
+  data-proyecto-id="${columna.id}"
+  data-glpi="${columna.glpi}"
+  data-siigo="${columna.siigo}"
+  data-codigo="${columna.codigo}"
+  data-estado="${columna.activo}"
+  class="btn-toogle group p-1 rounded flex justify-center items-center cursor-pointer hover:scale-110 active:scale-90 ${columna.activo ? "active:bg-red-500/40" : "active:bg-green-500/40"} transition-all duration-200"
+>
+  <span>${onOff(`w-5 h-5 group-active:text-white ${columna.activo ? "text-green-500" : "text-red-500"}`)}</span>
+</button>
       </div>
     `);
 
@@ -127,14 +128,14 @@ function renderTablaSiigo() {
   decorarBuscadorSiigo();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderTablaSiigo();
+document.addEventListener("DOMContentLoaded", async () => {
+  await cargarProyectos();
 });
 
 bindGridEditButtons({
   tableId: "tabla-nomenclatura",
   buttonSelector: ".btn-editar-proyecto",
-  getRecord: (rowIndex) => productos[rowIndex],
+  getRecord: (rowIndex) => proyectos[rowIndex],
   getModalConfig: (record, rowIndex) => ({
     modalId: "grid-edit-modal",
     context: "siigo",
@@ -146,7 +147,8 @@ bindGridEditButtons({
     fields: [
       {
         name: "glpi",
-        label: "GLPI"
+        label: "GLPI",
+        readOnly: true
       },
       {
         name: "siigo",
@@ -154,16 +156,21 @@ bindGridEditButtons({
       },
       {
         name: "codigo",
-        label: "Codigo"
+        label: "Codigo",
+        readOnly: true
       }
     ],
-    onConfirm: ({ values, rowIndex: currentRowIndex }) => {
-      productos[currentRowIndex] = {
-        ...productos[currentRowIndex],
-        ...values
-      };
+    onConfirm: async ({ values, rowIndex: currentRowIndex }) => {
+  const proyecto = proyectos[currentRowIndex];
 
-      renderTablaSiigo();
-    }
+  await updateProyecto(proyecto.id, values);
+
+  proyectos[currentRowIndex] = {
+    ...proyecto,
+    ...values
+  };
+
+  renderTablaSiigo();
+}
   })
 });

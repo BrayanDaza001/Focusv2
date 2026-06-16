@@ -83,24 +83,107 @@ width: 100%;
 #tabla-usuarios .gridjs-input::placeholder{
   color: rgb(148 163 184 / 1);
 }
-.gridjs-input:focus{
-  background:rgba(59,130,246,0.1);
-  padding-left: 28px; /* espacio para el icono */
+#tabla-proveedores .gridjs-input{
+  width: 100%;
+  padding-left: 28px;
   background-image: url("../icons/search.svg");
   background-repeat: no-repeat;
   background-position: 8px center;
   background-size: 16px;
-  width: 100%; 
 }
+#tabla-proveedores .gridjs-input::placeholder{
+  color: rgb(148 163 184 / 1);
+}
+.gridjs-wrapper{
+  border-radius: 24px;
+  overflow: visible;
+}
+.gridjs-table{
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.gridjs-footer,
+.gridjs-head{
+  border: none;
+  box-shadow: none;
+}
+/* Gridjs base styles */
+.gridjs-wrapper{
+  border-radius: 24px;
+  overflow: visible;
+}
+.gridjs-table{
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.gridjs-footer,
+.gridjs-head{
+  border: none;
+  box-shadow: none;
+}
+.gridjs-input:focus{
+  background:rgba(59,130,246,0.1);
+  padding-left: 28px;
+  background-image: url("../icons/search.svg");
+  background-repeat: no-repeat;
+  background-position: 8px center;
+  background-size: 16px;
+  width: 100%;
+}
+
 .gridjs-search{
   display: flex;
   flex-direction: column;
-  ;
   gap:12px;
 }
+
+/* Contenedores de tablas */
+#tabla-usuarios,
+#tabla-accesorios,
+#tabla-consulta,
+#tabla-paz,
+#tabla-edit-formulario,
+#tabla-proveedores {
+  width: 100%;
+}
+
+.gridjs-wrapper {
+  width: 100%;
+}
+
 .titulo-tabla{
   font-size: 18px;
   font-weight: 600;
- 
+}
+
+#asideMenu.aside-collapsed{
+  width: 5.5rem;
+}
+
+#asideMenu.aside-collapsed nav h2,
+#asideMenu.aside-collapsed nav a,
+#asideMenu.aside-collapsed #btn-atras span:last-child,
+#asideMenu.aside-collapsed .text-lg,
+#asideMenu.aside-collapsed .text-left{
+  display: none;
+}
+
+#asideMenu.aside-collapsed nav > div,
+#asideMenu.aside-collapsed #btn-atras,
+#asideMenu.aside-collapsed nav{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+#asideMenu.aside-collapsed nav > div,
+#asideMenu.aside-collapsed #menu_start > div,
+#asideMenu.aside-collapsed #menuFacturacion > div,
+#asideMenu.aside-collapsed #menuSoporte > div,
+#asideMenu.aside-collapsed #menuCoordinador > div{
+  justify-content: center;
+}
+
+#asideMenu.aside-collapsed .img_perfil_generus{
+  margin-inline: auto;
 }
 

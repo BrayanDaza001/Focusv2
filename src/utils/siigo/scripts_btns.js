@@ -1,23 +1,54 @@
 import { openModal, closeModal } from "../global/modales_scripts";
-
+import { updateProyecto } from "../../services/proyectos";
+let proyectoIndexSeleccionado = null;
+let proyectoSeleccionado = null;
 const modal = document.getElementById("toogle_accion");
 const tabla = document.getElementById("tabla-nomenclatura");
 const btnCancelarModal = document.getElementById("btn_cancelar_modal");
 const btnConfirmarModal = document.getElementById("confirmar_btn_modal");
 
+
 btnCancelarModal?.addEventListener("click", (event) => {
   event.preventDefault();
   closeModal(modal);
 });
-
-btnConfirmarModal?.addEventListener("click", (event) => {
+btnConfirmarModal?.addEventListener("click", async (event) => {
   event.preventDefault();
-  closeModal(modal);
+
+const fila = document.querySelector(
+  `.btn-toogle[data-id="toogle-${proyectoIndexSeleccionado}"]`
+);
+
+const idProyecto = Number(fila.dataset.proyectoId);
+const estadoActual = fila.dataset.estado === "true";
+
+await updateProyecto(proyectoSeleccionado.id, {
+  ...proyectoSeleccionado,
+  activo: !proyectoSeleccionado.activo
 });
 
+closeModal(modal);
+
+location.reload();
+});
 tabla?.addEventListener("click", (event) => {
   const btnToggle = event.target.closest(".btn-toogle");
   if (!btnToggle) return;
+  proyectoSeleccionado = {
+  id: Number(btnToggle.dataset.proyectoId),
+  glpi: btnToggle.dataset.glpi,
+  siigo: btnToggle.dataset.siigo,
+  codigo: btnToggle.dataset.codigo,
+  activo: btnToggle.dataset.estado === "true"
+};
+  if (!btnToggle) return;
+
+const contenedor = btnToggle.parentElement;
+
+proyectoIndexSeleccionado = Number(
+  contenedor.getAttribute("id")
+);
+
 
   const estado = btnToggle.dataset.estado === "true";
   const accion = estado ? "Desactivar" : "Activar";

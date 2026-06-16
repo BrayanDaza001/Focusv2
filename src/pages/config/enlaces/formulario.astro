@@ -2,6 +2,9 @@
 import Layoutv2 from "../../../layouts/Layoutv2.astro";
 import BotonGuardar from "../../../components/botones/BotonGuardar.astro";
 import ModalEdicionGrid from "../../../components/modales/ModalEdicionGrid.astro";
+import { preguntasFormulario } from "../../../utils/formulario/preguntas";
+
+const preguntasScript = `window["__PREGUNTAS_FORMULARIO"] = ${JSON.stringify(preguntasFormulario)};`;
 ---
 
 <Layoutv2 titulo="Editar Formulario">
@@ -27,4 +30,5 @@ import ModalEdicionGrid from "../../../components/modales/ModalEdicionGrid.astro
     descripcion="Actualiza la configuración de la pregunta seleccionada."
   />
 </Layoutv2>
+<script set:html={preguntasScript} />
 <script src="../../../utils/config/tabla_formulario.js"></script>

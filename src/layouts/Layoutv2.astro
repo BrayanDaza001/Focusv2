@@ -22,19 +22,19 @@ const { titulo } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>F.O.C.U.S</title>
   </head>
-  <body
-    class="font-display bg-background-light dark:bg-background-dark h-screen flex w-full"
-  >
+  <body class="font-display min-h-screen flex w-full">
     <!-- Aside -->
     <Aside />
 
     <!-- Contenedor derecho -->
-    <div class="flex flex-col flex-1 h-full">
+    <div
+      class="flex flex-col flex-1 h-full bg-gradient-to-tl bg-gradient-to-br from-blue-300/30 via-blue-150/20 to-slate-500/20"
+    >
       <!-- Header -->
       <Header titulo={titulo} />
 
       <!-- Contenido con scroll -->
-      <main class="flex-1 overflow-y-auto bg-[rgb(203,213,225,0.6)] relative">
+      <main class="flex-1 min-h-0 overflow-y-auto relative">
         <slot />
       </main>
     </div>

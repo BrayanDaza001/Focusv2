@@ -1,31 +1,29 @@
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
 
-<div class="bg-slate-200/10 font-display fixed inset-0 flex items-center justify-center z-20  opacity-0 pointer-events-none transition-all scale-50 duration-200" id="modal-change" data-id-modal="">
-<div class="min-h-screen  w-full flex items-center justify-center p-4">
-<div class="bg-white  rounded-lg shadow-2xl w-full max-w-md p-8 text-center">
-<div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-slate-100  mb-5">
-<span class="material-symbols-outlined text-slate-600 ">note</span>
+<div class="bg-slate-950/30 backdrop-blur-[2px] font-display fixed inset-0 flex items-center justify-center z-20 opacity-0 pointer-events-none transition-all scale-95 duration-200" id="modal-change" data-id-modal="">
+<div class="min-h-screen w-full flex items-center justify-center p-4">
+<div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 text-center border border-slate-200">
+<div class="mx-auto flex items-center justify-center h-14 w-14 rounded-2xl bg-slate-100 mb-5">
+<span class="material-symbols-outlined text-slate-700 text-[28px]">edit_note</span>
 </div>
-<h3 class="text-lg font-bold leading-6 text-slate-900  " id="modal-change-title">Observacion</h3>
+<h3 class="text-xl font-bold leading-6 text-slate-900" id="modal-change-title">Observacion</h3>
 <div class="mt-2">
-<p class="text-sm text-slate-600 " id="modal-change-text">
-Por favor agregue una observacion a este item                </p>
+<p class="text-sm text-slate-600" id="modal-change-text">
+Por favor agregue una observacion a este item</p>
 </div>
 
   <textarea name="observacion"
-    class="w-full text-xl p-4 rounded-xl border border-gray-300 "
+    class="mt-4 w-full min-h-36 resize-none text-base p-4 rounded-2xl border border-slate-300 bg-slate-50/70 text-slate-800 outline-none transition focus:border-slate-500 focus:bg-white focus:ring-4 focus:ring-slate-200"
     rows="4"
     id="input-update-observacion"
-    placeholder="Escribe la observación..."
+    placeholder="Escribe la observacion..."
     required
   ></textarea>
 <div class="mt-6 space-y-2.5">
-  <p class="text-sm text-red-600 opacity-0  translate-y-3 transition-all duration-500" id="aviso"></p>
-<button class="w-full inline-flex justify-center rounded border border-transparent bg-slate-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 dark:focus:ring-offset-slate-800 sm:text-sm cursor-pointer" id="btn-modal-observacion" type="button">Enviar</button>
-<button class="w-full inline-flex justify-center rounded border border-transparent bg-slate-800 px-4 py-2 text-base font-medium text-white shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 dark:focus:ring-offset-slate-800 sm:text-sm cursor-pointer" id="btn-cancelar" type="button">Cancelar</button>
+  <p class="text-sm text-red-600 opacity-0 h-0 translate-y-3 transition-all duration-300" id="aviso"></p>
+<button class="w-full inline-flex justify-center rounded-2xl border border-transparent bg-slate-900 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-800 focus:ring-offset-2 sm:text-sm cursor-pointer" id="btn-modal-observacion" type="button">Guardar observacion</button>
+<button class="w-full inline-flex justify-center rounded-2xl border border-slate-200 bg-white px-4 py-3 text-base font-medium text-slate-700 shadow-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-2 sm:text-sm cursor-pointer" id="btn-cancelar" type="button">Cancelar</button>
 </div>
 </div>
 </div>
-

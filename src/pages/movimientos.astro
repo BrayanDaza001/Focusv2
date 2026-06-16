@@ -1,12 +1,14 @@
 ---
 import Layoutv2 from "../layouts/Layoutv2.astro";
 import { Icon } from "astro-icon/components";
-import AgregarAccesorios from "../components/modales/agregarAccesorios.astro";
 import EditarAccesorio from "../components/modales/editarAccesorio.astro";
-import CargarActas from "../components/modales/cargarActas.astro";
+import alertIcon from "../icons/alertIcon.svg";
 import ModalActa from "../components/Actas/ModalActa.astro";
 import RegistroElementos from "../components/Actas/RegistroElementos.astro";
+import { preguntasFormulario } from "../utils/formulario/preguntas";
 import type { ElementoActa } from "../types/ElementoActa";
+
+const preguntasScript = `window["__PREGUNTAS_FORMULARIO"] = ${JSON.stringify(preguntasFormulario)};`;
 ---
 
 <Layoutv2 titulo={"Soporte > Movimientos"}>
@@ -15,33 +17,67 @@ import type { ElementoActa } from "../types/ElementoActa";
       <h2 class="font-bold text-2xl">Registro de Movimientos</h2>
       <h6>Gestione la asignación y devolución de activos</h6>
     </div>
-    <div
-      class="flex flex-row gap-y-2.5 justify-between items-center w-full h-full"
-    >
-    </div>
 
-    <div id="tabla-movimientos" class="w-23/24 self-center mt-3 .tablas"></div>
-    <div class="conten_5 duration-300 h-[50px] w-full flex justify-end gap-x-6">
+    <div class="w-full max-w-400 flex gap-x-5 items-center">
+      <input
+        type="text"
+        id="txtBuscar"
+        placeholder="Escriba la entidad a buscar"
+        class="w-full h-12 bg-white rounded-md px-4"
+      />
       <button
-        id="btn_realizar_formulario"
-        class="border text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 rounded-sm bg-gray-100 py-2.5 w-[180px] flex items-center active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
-        >REALIZAR FORMULARIO</button
+        id="btnBuscar"
+        class="bg-[#0B3356] hover:bg-[#0B3356]/90 hover:cursor-pointer min-w-[180px] h-12 text-white rounded-md active:scale-95 transition-transform duration-300 ease-out"
+        >Buscar</button
       >
-      <button
-        id="btn_generar_acta"
-        class="border px-2.5 text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 bg-gray-100 w-[180px] active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
-        >GENERAR ACTA</button
+    </div>
+    <div id="tabla-movimientos" class="w-full max-w-400 mt-3 tablas">
+      <div
+        id="mensaje-inicial"
+        class="bg-white rounded-lg border border-slate-200 py-12 text-center text-slate-500"
       >
-      <div class="h-full">
+        <div class="text-6xl mb-3">📋</div>
+        <h3 class="font-semibold text-xl">No hay información para mostrar</h3>
+        <p class="mt-2">Digite una entidad y presione Buscar.</p>
+      </div>
+    </div>
+    <div class="conten_5 duration-300 h-[50px] w-full flex justify-evenly">
+      <div class="w-1/2 * flex justify-start gap-x-8 ml-5">
+        <span
+          class="flex justify-center items-center flex-col bg-red-200/50 p-2 h-16 w-auto rounded-md text-slate-500"
+          ><Icon name="devolucion" class="w-8 h-8" /> Devolver
+        </span>
+        <span
+          class="flex justify-center items-center flex-col bg-blue-200/50 p-2 h-16 w-auto rounded-md text-slate-500"
+          ><Icon name="asignacion" class="w-8 h-8" /> Asignar
+        </span>
+        <span
+          class="flex justify-center items-center flex-col bg-red-200/50 p-2 h-16 w-auto rounded-md text-slate-500"
+          ><Icon name="alertIcon" class="w-8 h-8" /> Robado</span
+        >
+      </div>
+      <div class="flex justify-end gap-x-4 w-1/2">
         <button
-          id="cargar_robo"
-          class="border border-2 bg-gray-100 text-red-700 font-bold px-2 cursor-pointer h-full flex justify-center items-center rounded-md active:scale-95 hover:bg-red-700 hover:text-gray-100 transition-all duration-200"
+          id="btn_realizar_formulario"
+          class="border-2 text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 bg-gray-100 py-2.5 w-[180px] flex items-center active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
+          >REALIZAR FORMULARIO</button
         >
-          <span class="">
-            <Icon name={"robo"} />
-          </span>
-          CARGAR ROBO</button
+        <button
+          id="btn_generar_acta"
+          class="border px-2.5 text-gray-700 cursor-pointer font-bold rounded-md border-gray-200 bg-gray-100 w-[180px] active:scale-95 hover:bg-gray-700 hover:text-gray-100 transition-all duration-200"
+          >GENERAR ACTA</button
         >
+        <div class="h-full">
+          <button
+            id="cargar_robo"
+            class="border-2 bg-gray-100 text-red-700 font-bold px-2 cursor-pointer h-full flex justify-center items-center rounded-md active:scale-95 hover:bg-red-700 hover:text-gray-100 transition-all duration-200"
+          >
+            <span class="">
+              <Icon name={"robo"} />
+            </span>
+            CARGAR ROBO</button
+          >
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +89,7 @@ import type { ElementoActa } from "../types/ElementoActa";
   {/* Modal para Acta de Robo */}
   <ModalActa
     idModal="modal_acta_robo"
+    idElemento="container_acta_robo"
     titulo="Confirmar Generación Acta de Robo"
     icono="documentCheck"
     mostrarCargue={true}
@@ -64,11 +101,13 @@ import type { ElementoActa } from "../types/ElementoActa";
       { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
       { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
     ] as ElementoActa[]}
+    accesorio={false}
   />
 
   {/* Modal para Confirmar Generación de Acta */}
   <ModalActa
     idModal="modal_generar_actas"
+    idElemento="elementos-acta"
     titulo="Generación de Actas"
     icono="documentCheck"
     mostrarCargue={false}
@@ -76,13 +115,77 @@ import type { ElementoActa } from "../types/ElementoActa";
     idConfirmar="confirmar_generar_acta"
     textoCancelar="Volver"
     textoConfirmar="Confirmar y Generar"
-    elementos={[
-      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
-      { nombre: "CELULAR", valor: "sxx", icono: "arrow-left" },
-    ] as ElementoActa[]}
+    elementos={[]}
+    accesorio={true}
   />
+
+  <div
+    id="modal_accesorios_acta"
+    class="flex items-center w-full h-full justify-center bg-gray-300/50 fixed inset-0 opacity-0 pointer-events-none transition-opacity duration-300 z-50"
+  >
+    <div class="space-y-4 bg-white w-full max-w-3xl p-6 rounded-2xl shadow-xl">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-semibold text-slate-900">
+            Seleccionar accesorios para la acta
+          </h3>
+          <p class="text-sm text-slate-500">
+            Elija los accesorios que desea agregar a la generación de acta.
+          </p>
+        </div>
+        <button
+          id="btn_cerrar_modal_accesorios_acta"
+          class="text-slate-500 hover:text-slate-900 font-semibold"
+          type="button"
+        >
+          Cerrar
+        </button>
+      </div>
+      <div
+        id="accesorios-acta-list"
+        class="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-168 overflow-y-auto"
+      >
+      </div>
+      <div class="flex justify-end gap-3 pt-2">
+        <button
+          id="btn_agregar_accesorios_acta"
+          class="bg-[#0B3356] text-white px-4 py-2 rounded-md hover:bg-[#0B3356]/90 active:scale-95 transition-all duration-200"
+          type="button"
+        >
+          Agregar seleccionados
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="modal_sin_seleccion"
+    class="flex items-center w-full h-full justify-center bg-gray-300/50 fixed inset-0 opacity-0 pointer-events-none transition-opacity duration-300 z-50"
+  >
+    <div class="space-y-4 bg-white w-full max-w-md p-6 rounded-2xl shadow-xl">
+      <div class="flex flex-col gap-2">
+        <h3 class="text-xl font-semibold text-slate-900">
+          Seleccione un activo
+        </h3>
+        <p class="text-slate-600 text-sm" id="modal_sin_seleccion-p-text">
+          Debes seleccionar al menos un activo para continuar.
+        </p>
+      </div>
+      <div class="flex justify-end">
+        <button
+          id="btn_cerrar_modal_sin_seleccion"
+          class="rounded-md bg-slate-900 px-4 py-2 text-white hover:bg-slate-700 transition-colors"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <RegistroElementos />
 </Layoutv2>
+
+<script set:html={preguntasScript} />
+<script src="../utils/movimientos/registroFormulario.js"></script>
 <script src="../utils/movimientos/tablaMovimientos.js"></script>
 <script src="../utils/movimientos/scripts_botones.js"></script>

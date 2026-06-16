@@ -1,0 +1,37 @@
+---
+import Layoutv2 from "../layouts/Layoutv2.astro";
+import MainDiv from "../components/mainDiv/MainDiv.astro";
+import TituloInicial from "../components/baseModales/tituloInicial.astro";
+import Observacion from "../components/observacion.astro";
+---
+
+<Layoutv2 titulo="Facturacion > Proveedores">
+  <MainDiv>
+    <TituloInicial
+      titulo="Proveedores"
+      texto="Seguimiento mensual de cumplimiento y novedades por proveedor"
+    />
+
+    <section class="w-full rounded-[28px] border border-slate-200/80 bg-white/90 p-5 shadow-sm md:p-7">
+      <div class="mb-5 flex flex-col gap-2 border-b border-slate-200 pb-4">
+        <p class="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
+          CheckTask
+        </p>
+        <h3 class="text-xl font-semibold text-slate-900">
+          Estado operativo por mes
+        </h3>
+        <p class="max-w-3xl text-sm text-slate-500">
+          Revisa el avance por proveedor, identifica meses pendientes y registra observaciones desde la misma tabla.
+        </p>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/70 p-3 md:p-4">
+        <div id="tabla-proveedores" class="w-full overflow-x-auto"></div>
+      </div>
+    </section>
+
+    <Observacion />
+  </MainDiv>
+</Layoutv2>
+
+<script src="../utils/proveedores/proveedoresLista.js"></script>

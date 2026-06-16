@@ -16,37 +16,22 @@ import ModalEdicionGrid from "../components/modales/ModalEdicionGrid.astro";
     <div
       class="flex flex-row gap-y-2.5 justify-between items-center h-full w-full"
     >
-      <!-- <div class="flex flex-col justify-start gap-y-2.5 h-[80px] w-4/12 ml-6">
-        <label for="tipoMovimiento" class="font-semibold text-gray-700"
-          >TIPO DE MOVIMIENTO / ESTADO</label
-        >
-
-        <select
-          id="tipoMovimiento"
-          class="w-1/2 border border-gray-200 rounded-sm bg-gray-100 h-full"
-        >
-          <option value="">Seleccione...</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-        </select>
-      </div> -->
-
       <div class="conten_3 h-[50px] flex justify-end w-full">
         <button
           id="btn_modal_crear_accesorios"
           class="group h-full w-2/12 flex items-center justify-center gap-2 font-bold
-  border border-gray-200 rounded-sm cursor-pointer
-  bg-blue-500 hover:bg-blue-800
-  active:scale-95 active:shadow-md
-  transition-all duration-200 z-10"
+              border border-gray-200 rounded-sm cursor-pointer
+              bg-blue-500 hover:bg-blue-800
+              active:scale-95 active:shadow-md
+              transition-all duration-200 z-10"
         >
           <Icon name="mas" class="text-white w-6 h-6 group-active:scale-90" />
-          <span class="text-white">NUEVO ACCESORIO</span>
+          <span class="text-white">Nuevo Accesorio</span>
         </button>
       </div>
     </div>
 
-    <div id="tabla-accesorios" class="w-23/24 self-center -mt-15 -ml-15"></div>
+    <div id="tabla-accesorios" class="w-18/24 self-center -mt-15"></div>
   </div>
   <AgregarAccesorios
     cancelar_agregar="cancelar-crear-accesorio"

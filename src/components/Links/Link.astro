@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+const { id, descripcion, hrefLink, icon } = Astro.props;
+---
+
+<div
+  class="relative overflow-hidden pl-8 pr-4 rounded-lg py-2 group cursor-pointer"
+>
+  <div
+    class="absolute inset-0 pl-8 pr-4 rounded-lg py-2 bg-slate-700 group transform transition-all duration-300 -translate-x-full group-hover:translate-x-0"
+    id={id}
+  >
+  </div>
+  <a
+    class="relative z-10 text-sm font-medium transition-colors flex items-center gap-3 group-hover:text-white"
+    href={hrefLink}
+  >
+    <Icon
+      name={icon}
+      class="w-5 h-5 text-slate-800 transition-colors group-hover:text-white"
+    />
+    {descripcion}</a
+  >
+</div>

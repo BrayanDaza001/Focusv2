@@ -1,109 +1,78 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const facturacion = document.getElementById("facturacion");
+  const soporte = document.getElementById("soporte");
+  const cordinador = document.getElementById("btn_cordinador");
 
-    const facturacion = document.getElementById('facturacion')
-    const soporte = document.getElementById('soporte')
-    const cordinador = document.getElementById('btn_cordinador')
-    const menuFacturacion = document.getElementById('menuFacturacion')
-    const menuSoporte = document.getElementById('menuSoporte')
-    const menuCoordinador = document.getElementById('menuCoordinador')
-    const menu_start = document.getElementById('menu_start')
-    const btn_atras = document.getElementById('btn-atras')
-   
-    facturacion.addEventListener('click', () =>{
-        menuFacturacion.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute',
-            
-        )
-        btn_atras.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        menu_start.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            'hidden'
-        )
-        
-    })
-    soporte.addEventListener('click',() =>{
-        menuSoporte.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-         menu_start.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            'hidden'
-        )
-        btn_atras.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-    })
-    cordinador.addEventListener('click', () =>{
-         menuCoordinador.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        btn_atras.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        menu_start.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            'hidden'
-        )
-        
-    })
-     btn_atras.addEventListener('click', () => {
+  const menuFacturacion = document.getElementById("menuFacturacion");
+  const menuSoporte = document.getElementById("menuSoporte");
+  const menuCoordinador = document.getElementById("menuCoordinador");
 
-        // ocultar todos los submenus
-        menuFacturacion.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        menuSoporte.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        menuCoordinador.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            '-translate-y-5',
-            'absolute'
-        )
-        // mostrar menu inicio
-        menu_start.classList.remove(
-            'opacity-0',
-            'pointer-events-none',
-            'absolute',
-            'hidden'
-        )
+  const menuStart = document.getElementById("menu_start");
+  const btnAtras = document.getElementById("btn-atras");
 
-        // ocultar botón atrás
-        btn_atras.classList.add(
-            'opacity-0',
-            'pointer-events-none',
-            'absolute'
-        )
+  if (
+    !facturacion ||
+    !soporte ||
+    !cordinador ||
+    !menuFacturacion ||
+    !menuSoporte ||
+    !menuCoordinador ||
+    !menuStart ||
+    !btnAtras
+  ) {
+    return;
+  }
 
-    })
-})
+  const resetMenu = () => {
+    [menuFacturacion, menuSoporte, menuCoordinador].forEach((menu) => {
+      menu.classList.add(
+        "opacity-0",
+        "pointer-events-none",
+        "-translate-y-5",
+        "absolute"
+      );
+    });
+
+    menuStart.classList.remove(
+      "opacity-0",
+      "pointer-events-none",
+      "hidden",
+      "absolute"
+    );
+
+    btnAtras.classList.add(
+      "opacity-0",
+      "pointer-events-none",
+      "absolute"
+    );
+  };
+
+  const openSection = (menu) => {
+    resetMenu();
+
+    menu.classList.remove(
+      "opacity-0",
+      "pointer-events-none",
+      "-translate-y-5",
+      "absolute"
+    );
+
+    menuStart.classList.add(
+      "opacity-0",
+      "pointer-events-none",
+      "hidden"
+    );
+
+    btnAtras.classList.remove(
+      "opacity-0",
+      "pointer-events-none",
+      "absolute"
+    );
+  };
+
+  facturacion.addEventListener("click", () => openSection(menuFacturacion));
+  soporte.addEventListener("click", () => openSection(menuSoporte));
+  cordinador.addEventListener("click", () => openSection(menuCoordinador));
+  btnAtras.addEventListener("click", resetMenu);
+});
+

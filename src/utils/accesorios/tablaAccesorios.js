@@ -1,5 +1,6 @@
 import { Grid, html } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
+import { accesorios } from "./accesoriosData";
 import { lapiz } from "../../icons/lapiz";
 import { basura } from "../../icons/basura";
 import { mouse } from "../../icons/mouse";
@@ -8,44 +9,19 @@ import { plug } from "../../icons/plug";
 import { monitor } from "../../icons/monitor";
 import { bindGridEditButtons } from "../global/gridEditModal";
 
-const productos = [
-  {
-    imagen: "mouse",
-    nombre: "Mouse Optico",
-    categoria: "Perifericos",
-    stock: 42
-  },
-  {
-    imagen: "keyboard",
-    nombre: "Teclado Mecanico",
-    categoria: "Perifericos",
-    stock: 15
-  },
-  {
-    imagen: "plug",
-    nombre: "Cargador Laptop Universal",
-    categoria: "Energia",
-    stock: 5
-  },
-  {
-    imagen: "monitor",
-    nombre: "Monitor 24 UltraWide",
-    categoria: "Pantallas",
-    stock: 2
-  }
-];
-
 let gridAccesorios = null;
 
 function crearFilasAccesorios() {
   const iconos = { mouse, keyboard, plug, monitor };
 
-  return productos.map((columna, index) => {
-    const imagen = html(`<span class="flex items-center justify-center">${
-      iconos[columna.imagen]
-        ? iconos[columna.imagen]("w-6 h-6")
-        : '<svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>'
-    }</span>`);
+  return accesorios.map((columna, index) => {
+    const imagen = html(
+      `<span class="flex items-center justify-center">${
+        iconos[columna.imagen]
+          ? iconos[columna.imagen]("w-6 h-6")
+          : '<svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /></svg>'
+      }</span>`,
+    );
 
     const nombre = html(`
       <div class="font-semibold text-[rgb(51,65,85)]">
@@ -120,7 +96,7 @@ function renderTablaAccesorios() {
       data,
       pagination: {
         enabled: true,
-        limit: 10
+        limit: 10,
       },
       search: true,
       sort: true,
@@ -128,13 +104,13 @@ function renderTablaAccesorios() {
         th: {
           "background-color": "#0B3356",
           color: "white",
-          "text-align": "center"
+          "text-align": "center",
         },
         td: {
           "font-size": "14px",
-          color: "rgb(51,65,85)"
-        }
-      }
+          color: "rgb(51,65,85)",
+        },
+      },
     }).render(contenedor);
   } else {
     gridAccesorios.updateConfig({ data }).forceRender();
@@ -150,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
 bindGridEditButtons({
   tableId: "tabla-accesorios",
   buttonSelector: ".btn-editar-accesorio",
-  getRecord: (rowIndex) => productos[rowIndex],
+  getRecord: (rowIndex) => accesorios[rowIndex],
   getModalConfig: (record, rowIndex) => ({
     modalId: "grid-edit-modal",
     context: "accesorios",
@@ -163,29 +139,29 @@ bindGridEditButtons({
       {
         name: "imagen",
         label: "Tipo de icono",
-        placeholder: "mouse, keyboard, plug o monitor"
+        placeholder: "mouse, keyboard, plug o monitor",
       },
       {
         name: "nombre",
-        label: "Nombre"
+        label: "Nombre",
       },
       {
         name: "categoria",
-        label: "Categoria"
+        label: "Categoria",
       },
       {
         name: "stock",
         label: "Stock",
-        type: "number"
-      }
+        type: "number",
+      },
     ],
     onConfirm: ({ values, rowIndex: currentRowIndex }) => {
-      productos[currentRowIndex] = {
-        ...productos[currentRowIndex],
-        ...values
+      accesorios[currentRowIndex] = {
+        ...accesorios[currentRowIndex],
+        ...values,
       };
 
       renderTablaAccesorios();
-    }
-  })
+    },
+  }),
 });

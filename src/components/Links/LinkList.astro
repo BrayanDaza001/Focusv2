@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+const { name, id, description } = Astro.props;
+---
+
+<div class="relative w-full">
+  <div
+    class="relative overflow-hidden group flex items-center gap-3 pl-8 pr-4 rounded-lg py-2 cursor-pointer"
+    id={id}
+  >
+    <div
+      class="absolute inset-0 bg-slate-700 -translate-x-full group-hover:translate-x-0 transition-transform duration-300"
+    >
+    </div>
+    <Icon
+      name={name}
+      class="relative z-10 w-5 h-5 text-slate-800 group-hover:text-white"
+    />
+
+    <a class="relative z-10 text-sm font-medium group-hover:text-white"
+      >{description}</a
+    >
+  </div>
+</div>

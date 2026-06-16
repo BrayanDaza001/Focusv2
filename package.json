@@ -16,6 +16,7 @@
     "astro-icon": "^1.1.5",
     "exceljs": "^4.4.0",
     "gridjs": "^6.2.0",
+    "json-server": "^1.0.0-beta.15",
     "jspdf": "^3.0.4",
     "jspdf-autotable": "^5.0.2",
     "tailwindcss": "^4.1.17",

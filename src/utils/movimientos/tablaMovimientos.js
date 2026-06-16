@@ -1,123 +1,257 @@
 import { Grid, html } from "gridjs";
 import "gridjs/dist/theme/mermaid.css";
-import { basura } from "../../icons/basura";
+import { abrir_modales} from "../global/modales_scripts";
+import { getCustodios } from "../../services/proyectos";
+import alertIcon from "../../icons/alertIcon.svg";
+import asignacion from "../../icons/asignacion.svg";
+import devolucion from "../../icons/devolucion.svg";
+let custodios = [];
 
 const movimientos = [
   {
     imagen: "mouse",
     nombre: "Mouse Óptico",
     categoria: "Periféricos",
-    stock: 42
+    modelo: "IT",
+    tipoActivo: "IT",
+    stock: 42,
   },
   {
     imagen: "keyboard",
     nombre: "Teclado Mecánico",
     categoria: "Periféricos",
-    stock: 15
+    modelo: "IT",
+    tipoActivo: "IT",
+    stock: 15,
   },
   {
     imagen: "plug",
     nombre: "Cargador Laptop Universal",
     categoria: "Energía",
-    stock: 5
+    modelo: "IT",
+    tipoActivo: "IT",
+    stock: 5,
   },
   {
     imagen: "monitor",
     nombre: "Monitor 24 UltraWide",
     categoria: "Pantallas",
-    stock: 2
-  }
+    modelo: "IT",
+    tipoActivo: "IT",
+    stock: 2,
+  },
 ];
+let check = (id, estado) => {
+  if (estado === "robado") {
+    return html(`
+      <div class="flex justify-center items-center w-full h-10">
+        <input
+          type="checkbox"
+          class="w-5 h-5 accent-sky-600 cursor-pointer"
+          disabled
+          data-id="${id}"
+          name="activoSeleccionado"
+        />
+      </div>
+    `);
+  }
 
-document.addEventListener("DOMContentLoaded", () => {
-  try {
-    if (movimientos.length > 0) {
+  return html(`
+    <div class="flex justify-center items-center w-full h-10">
+      <input
+        type="checkbox"
+        class="w-5 h-5 accent-sky-600 cursor-pointer"
+        data-id="${id}"
+        name="activoSeleccionado"
+      />
+    </div>
+  `);
+};
+let grid = null;
 
-      let datos = movimientos.map((columna, index) => {
 
-        let botones = html(`
-          <div class="flex justify-center items-center gap-2 w-full">
-           <button data-id="eliminar-${index}" class="btn-eliminar-accesorio group p-1 rounded flex justify-center items-center cursor-pointer 
-                  hover:scale-110 active:scale-90
-                  active:bg-red-500/40 transition-all duration-200">
-              <span class="flex items-center justify-center text translate-x-[-2px]" >${basura("w-5 h-5 text-red-400 group-active:text-white")}</span>
-            </button>
-          </div>
-           
+function crearTabla(movimientos) {
+  console.log("Movimientos:", movimientos);
+  const datos = movimientos.map((columna, index) => [
+  check(columna.id_activo,columna.estado),
+  columna.activo,
+  columna.serial,
+  columna.modelo,
+  columna.tipo_activo,
+  html(`
+    <button data-id="${index}">
+      <img src="${
+        columna.estado === "robado"
+          ? alertIcon.src
+          : columna.acta
+          ? asignacion.src
+          : devolucion.src
+      }" class="w-6 h-6 active:scale-90 transform duration-200" />
+    </button>
+  `),
+]);
 
-        `);
+  const contenedor = document.getElementById("tabla-movimientos");
 
-        let nombre = html(`
-          <div class="font-semibold text-[rgb(51,65,85)] flex gap-1">
-            📄 ${columna.nombre}
-          </div>
-        `);
+  if (grid) {
+    grid.destroy();
+  }
 
-        let categoria = html(`
-          <div class="font-semibold text-[rgb(51,65,85)]">
-            ${columna.categoria}
-          </div>
-        `);
+  contenedor.innerHTML = "";
 
-        return [nombre, categoria, botones];
-      });
+  grid = new Grid({
+    columns: [
+      "Select",
+      "Nombre de Activo",
+      "Serial",
+      "Modelo",
+      "Tipo de Activo",
+      "Acciones",
+    ],
+    data: datos,
+    pagination: {
+      enabled: true,
+      limit: 10,
+    },
+    style: {
+      th: {
+        "text-align": "center",
+        "background-color": "#0B3356",
+        color: "white",
+      },
+      td: {
+        "text-align": "center",
+      },
+    },
+    search: false,
+    sort: true,
+  });
 
-      new Grid({
-        columns: [
-          "Nombre",
-          "Tipo movimiento",
-          { name: "Acciones", width: "120px" }
-        ],
-        data: datos,
-        pagination: {
-          enabled: true,
-          limit: 10
-        },
-        search: {
-          placeholder: "Buscar..."
-        },
-        sort: true,
-        style: {
-          th: {
-            "background-color": "#0B3356",
-            color: "white",
-            "text-align": "start"
-          },
-          td: {
-            "font-size": "14px",
-            color: "rgb(51,65,85)"
-          }
-        }
-      }).render(document.getElementById("tabla-movimientos"));
+  grid.render(contenedor);
+}
 
-      // 🔍 Personalizar buscador
-      const buscador = document.querySelector("#tabla-movimientos .gridjs-search");
+function getActivosSeleccionados() {
+  return Array.from(
+    document.querySelectorAll('input[name="activoSeleccionado"]:checked'),
+  )
+    .map((check) => {
+      const id = Number(check.dataset.id);
+      return custodios.find((x) => x.id_activo === id);
+    })
+    .filter(Boolean);
+}
 
-      if (buscador) {
-        const label = document.createElement("label");
-        label.textContent = "Buscar movimientos";
-        label.className = "font-semibold";
+function buildElementoActivo(activo) {
+  return `
+    <div class="w-full rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-100 text-lg">
+          📦
+        </div>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold text-slate-900">${activo.activo}</p>
+          <p class="truncate text-[11px] text-slate-500">${activo.nombre} · ${activo.tipo_activo}</p>
+        </div>
+      </div>
+      <div class="mt-2 flex items-center justify-between gap-2 text-[11px] text-slate-600">
+        <span class="truncate">Modelo: ${activo.modelo}</span>
+        <span class="font-semibold text-slate-700">#${activo.cantidad}</span>
+      </div>
+    </div>
+  `;
+}
 
-        buscador.prepend(label);
+function renderElementosSeleccionados(containerId, activos) {
+  const contenedor = document.getElementById(containerId);
+  if (!contenedor) return;
 
-        const titulo = document.createElement("h2");
-        
-        titulo.className = "titulo-tabla";
+  contenedor.innerHTML = activos.map(buildElementoActivo).join("");
+}
 
-        buscador.append(titulo);
-      }
+function abrirModalConActivos(modalId, containerId) {
+  const activos = getActivosSeleccionados();
 
-      const input = document.querySelector("#tabla-movimientos input");
+  console.log(activos);
 
-      if (input) {
-        input.placeholder = "Número de cédula o nombre";
-      }
+ if (activos.length === 0) {
+  const texto = document.getElementById("modal_sin_seleccion-p-text");
 
-    } else {
-      console.log("No hay datos");
+  if (texto) {
+    texto.textContent =
+      "Debes seleccionar al menos un activo para continuar.";
+  }
+
+  abrir_modales(document.getElementById("modal_sin_seleccion"));
+  return;
+}
+  const actaBase = activos[0].acta;
+  const estadoBase = activos[0].estado;
+
+  console.log("actaBase:", actaBase);
+  console.log("estadoBase:", estadoBase);
+
+  const sonCompatibles = activos.every(
+    (activo) =>
+      activo.acta === actaBase &&
+      activo.estado === estadoBase
+  );
+
+  console.log("sonCompatibles:", sonCompatibles);
+
+ if (!sonCompatibles) {
+  const texto = document.getElementById("modal_sin_seleccion-p-text");
+
+  if (texto) {
+    texto.textContent =
+      "Los activos seleccionados no son compatibles. Todos deben tener el mismo estado y la misma acta.";
+  }
+
+  abrir_modales(document.getElementById("modal_sin_seleccion"));
+  return;
+}
+
+  renderElementosSeleccionados(containerId, activos);
+  abrir_modales(document.getElementById(modalId));
+}
+
+document.getElementById("btnBuscar").addEventListener("click", async () => {
+  const cedula = document.getElementById("txtBuscar").value.trim();
+
+  const resultado = await getCustodios(cedula);
+ 
+  console.log("Resultado de búsqueda:", resultado);
+  if (!resultado) {
+    const contenedor = document.getElementById("tabla-movimientos");
+
+    if (grid) {
+      grid.destroy();
+      grid = null;
     }
 
-  } catch (error) {
-    console.log(error);
+    contenedor.innerHTML = `
+      <div class="flex flex-col items-center justify-center py-16 text-slate-500">
+        <div class="text-6xl mb-4">📭</div>
+        <h3 class="text-xl font-semibold">
+          Ups... no hay nada por aquí
+        </h3>
+        <p class="mt-2">
+          No encontramos resultados para "${cedula}"
+        </p>
+      </div>
+    `;
+
+    return;
   }
+  custodios = resultado;
+crearTabla(custodios);
 });
+document.getElementById("btn_generar_acta").addEventListener("click", () => {
+  abrirModalConActivos("modal_generar_actas", "elementos-acta");
+});
+
+const btnCargarRobo = document.getElementById("cargar_robo");
+if (btnCargarRobo) {
+  btnCargarRobo.addEventListener("click", () => {
+    abrirModalConActivos("modal_acta_robo", "container_acta_robo");
+  });
+}
