@@ -35,7 +35,7 @@ const {
     </p>
   </div>
 
-  <div slot="body" class="w-full px-6 md:px-8">
+  <div slot="body" class="w-full px-6 md:px-8 mt-3.5">
     <form id={`${id}-form`} class="w-full">
       <div
         id={`${id}-fields`}
@@ -44,7 +44,6 @@ const {
       </div>
     </form>
   </div>
-
   <div
     slot="botones"
     class="flex w- flex-col-reverse gap-3 px-4 pb-2 md:flex-row md:justify-end rounded-b-2xl"
@@ -53,7 +52,7 @@ const {
     <BotonConfirmar
       idBC={`${id}-confirm`}
       textcontent="Confirmar"
-      class="w-full md:w-[250px] m-0 p-0 -mb-5"
+      class="w-full md:w-[250px] m-0 p-0"
     />
   </div>
 </Basemodal>

@@ -4,19 +4,22 @@ const { class: className = "", id } = Astro.props;
 
 <div
   id={id}
-  class={` flex items-center h-full justify-center bg-gray-300/50 w-full m-0 opacity-0 pointer-events-none  fixed inset-0 transition-all duration-300 scale-95 p-0`}
+  class="flex items-center h-full justify-center bg-gray-300/50 w-full m-0 opacity-0 pointer-events-none fixed inset-0 transition-all duration-300 scale-95 p-0"
 >
   <div
-    class={`w-150 h-104 flex flex-col justify-around rounded-2xl bg-white gap-x-2.5 ${className} `}
+    class={`w-150 max-h-[90vh] flex flex-col rounded-2xl bg-white gap-2.5 overflow-hidden ${className}`}
   >
-    <div class="flex flex-col justify-center w-full h-3/12">
+    <div class="flex flex-col justify-center w-full shrink-0">
       <slot name="titulo" />
     </div>
-    <div class="flex flex-col justify-start items-start w-full h-7/12">
+
+    <div
+      class="flex flex-col justify-start items-start w-full flex-1 min-h-0 overflow-y-auto"
+    >
       <slot name="body" />
     </div>
 
-    <div class="flex flex-col justify-end w-full h-2/12 px-4">
+    <div class="flex flex-col justify-end w-full shrink-0 px-4">
       <slot name="botones" />
     </div>
   </div>
